@@ -18,6 +18,7 @@ COPY backend/requirements.txt backend/requirements.txt
 RUN pip install --no-cache-dir -r backend/requirements.txt
 COPY --from=frontend /usr/local/bin/node /usr/local/bin/node
 COPY --from=frontend /app/node_modules node_modules
+COPY --from=frontend /app/gateway/node_modules gateway/node_modules
 COPY --from=frontend /app/gateway/dist gateway/dist
 COPY --from=frontend /app/frontend/dist frontend/dist
 COPY backend backend
