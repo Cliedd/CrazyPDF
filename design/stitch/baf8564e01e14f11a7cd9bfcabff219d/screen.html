@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>DocuVisa AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","on-primary-container":"#eeefff","surface-dim":"#d2d9f4","on-primary-fixed-variant":"#003ea8","surface-container-lowest":"#ffffff","surface-bright":"#faf8ff","on-tertiary":"#ffffff","surface-container-high":"#e2e7ff","on-surface":"#131b2e","tertiary-container":"#585be6","primary-container":"#2563eb","on-error":"#ffffff","background":"#faf8ff","secondary":"#006c4a","error-container":"#ffdad6","tertiary-fixed-dim":"#c0c1ff","tertiary":"#3e3fcc","tertiary-fixed":"#e1e0ff","outline-variant":"#c3c6d7","on-error-container":"#93000a","inverse-surface":"#283044","primary-fixed":"#dbe1ff","primary":"#004ac6","primary-fixed-dim":"#b4c5ff","secondary-fixed-dim":"#68dba9","on-tertiary-fixed-variant":"#2f2ebe","on-background":"#131b2e","secondary-fixed":"#85f8c4","outline":"#737686","on-primary-fixed":"#00174b","on-tertiary-container":"#f1eeff","on-surface-variant":"#434655","on-secondary-fixed-variant":"#005137","secondary-container":"#82f5c1","surface-tint":"#0053db","on-tertiary-fixed":"#07006c","error":"#ba1a1a","surface":"#faf8ff","on-secondary":"#ffffff","on-secondary-fixed":"#002114","surface-container":"#eaedff","inverse-primary":"#b4c5ff","surface-container-low":"#f2f3ff","surface-variant":"#dae2fd","inverse-on-surface":"#eef0ff","surface-container-highest":"#dae2fd","on-secondary-container":"#00714e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-tablet":"1.5rem","space-lg":"1.5rem","space-sm":"0.5rem",gutter:"1.25rem","space-md":"1rem",margin:"1rem","space-xs":"0.25rem","gutter-desktop":"1.5rem","margin-desktop":"2.5rem","space-xl":"2.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"label-numeric":["JetBrains Mono"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-badge":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"caption-mono":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.025em",fontWeight:"700"}],"label-numeric":["13px",{lineHeight:"16px",letterSpacing:"-0.02em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-badge":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"700"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"caption-mono":["11px",{lineHeight:"14px",fontWeight:"400"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script><style>html,body{min-height:1024px}</style></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant"><div class="h-16 max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><a class="flex items-center gap-space-sm" data-path="accueil-et-conversion" href="#"><img alt="DocuVisa AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VnrxsIkm3Q-YjPOX3mKrELAAmbJlki3aVldtwHdnalPghcFRPg0ncE6Lr6I_BSypchn6g1kBNc4vlH8anTgDVdJ7yYh61XVG5XDPGyYifFu52mxg72j82KqHjEfAW9yNaivDRVE7eweS78DGUKmer6NF3PwnpYvSUbE6aeR0lDNM1cbC_gY43wuWLvgb2xBYt3tI_-xVe_xtS5igKVIxnHqubVyTOkYNfLw4LC8WwouUn4nypUYHDG8cQ"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">DocuVisa<span class="text-primary">.AI</span></span><span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">DocuMorph &amp; VisaStudio</span></div></a><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-badge text-label-badge uppercase tracking-wider">100% Gratuit &amp; Illimité</span></div></div><nav class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-lg" data-active-classes="bg-primary text-on-primary font-body-md text-body-md rounded-lg shadow-sm"><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="accueil-et-conversion" href="#">Accueil &amp; Conversion</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="studio-photo-visa" href="#">Studio Photo Visa &amp; Campus France</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="detourage-ia" href="#">Détourage IA</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="mes-documents-et-exports" href="#">Mes Documents &amp; Exports</a></nav><div class="flex items-center gap-space-sm flex-shrink-0"><div class="flex items-center px-space-sm py-1 rounded-lg bg-surface-container border border-outline-variant font-caption-mono text-caption-mono text-on-surface font-semibold"><span class="text-secondary mr-1 font-bold">FR</span><span class="text-outline-variant">|</span><span class="text-on-surface-variant ml-1 hover:text-on-surface cursor-pointer">EN</span></div><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-lowest border border-outline-variant font-body-md text-body-md text-on-surface hover:bg-surface-container hover:text-on-surface transition-all shadow-[0_1px_3px_rgba(15,23,42,0.04)]" data-path="connexion-et-compte" href="#"><span class="material-symbols-outlined text-primary text-[18px]">lock</span><span>Connexion / Mon Compte</span></a><div class="p-0.5 rounded-full ring-2 ring-primary/20 hover:ring-primary transition-all cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/></div></div></div></header><main class="w-full pt-16 bg-background flex-grow"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient orbs -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 -left-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 right-0 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none"></div>
+<!-- Hero Content -->
+<div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop pt-space-lg pb-space-md">
+<!-- Top Badges Row -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-badge text-label-badge text-secondary font-bold uppercase tracking-wider">Suite Bureautique &amp; Visa 100% Gratuite &amp; Illimitée</span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">— Aucune carte bancaire</span>
+</div>
+<div class="hidden md:flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 font-caption-mono text-caption-mono text-secondary px-space-sm py-1 rounded bg-secondary-container/50">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            LATENCE CLOUD: 48ms
+          </span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">ICAO 9303 ISO/IEC 19794-5 COMPLIANT</span>
+</div>
+</div>
+<!-- Main Headline Grid (Asymmetric Editorial Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-end mb-space-lg">
+<div class="lg:col-span-8">
+<h1 class="font-display-lg text-headline-xl lg:text-display-lg text-on-surface font-extrabold tracking-tight leading-tight">
+            Convertissez vos documents <span class="text-primary">Word, PDF &amp; PPTX</span> instantanément.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm max-w-2xl">
+            La plateforme tout-en-un certifiée pour étudiants, candidats à l'immigration et professionnels du monde entier. Zéro frais caché, fidélité typographique intégrale et précision biométrique réglementaire.
+          </p>
+</div>
+<div class="lg:col-span-4 flex flex-col justify-end gap-space-xs">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex items-center justify-between">
+<div>
+<p class="font-caption-mono text-caption-mono text-on-surface-variant uppercase">Précision de tramage</p>
+<p class="font-headline-md text-headline-md text-primary font-bold">100.0% Vectoriel</p>
+</div>
+<div class="text-right">
+<p class="font-caption-mono text-caption-mono text-on-surface-variant uppercase">Garantie filigrane</p>
+<p class="font-headline-md text-headline-md text-secondary font-bold">Zéro Watermark</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Interactive Workbench Canvas -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-xl p-space-md lg:p-space-lg">
+<!-- Segmented Tab Navigation -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm pb-space-md">
+<div class="flex items-center gap-1.5 p-1 bg-surface-container rounded-lg overflow-x-auto w-full md:w-auto" id="tool-tabs" role="tablist">
+<button class="tab-btn px-space-md py-2 rounded-md font-body-md text-body-md font-semibold bg-surface-container-lowest text-primary shadow-sm flex items-center gap-space-xs whitespace-nowrap transition-all" id="tab-w2p" onclick="selectTab('w2p')" type="button">
+<span class="material-symbols-outlined text-[18px]">article</span>
+<span>Word ➔ PDF</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-md font-body-md text-body-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs whitespace-nowrap transition-all" id="tab-p2w" onclick="selectTab('p2w')" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_document</span>
+<span>PDF ➔ Word (Modifiable)</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-md font-body-md text-body-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs whitespace-nowrap transition-all" id="tab-pp2p" onclick="selectTab('pp2p')" type="button">
+<span class="material-symbols-outlined text-[18px]">slideshow</span>
+<span>PPTX ➔ PDF</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-md font-body-md text-body-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs whitespace-nowrap transition-all" id="tab-p2pp" onclick="selectTab('p2pp')" type="button">
+<span class="material-symbols-outlined text-[18px]">co_present</span>
+<span>PDF ➔ PPTX</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-md font-body-md text-body-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs whitespace-nowrap transition-all bg-secondary/10 text-secondary" id="tab-visa" onclick="selectTab('visa')" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">face</span>
+<span class="font-bold text-secondary">📸 Studio Photo Visa</span>
+</button>
+</div>
+<div class="hidden xl:flex items-center gap-space-sm font-caption-mono text-caption-mono text-on-surface-variant">
+<span class="px-space-xs py-0.5 rounded bg-surface-container">SSL 256-BIT</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container">AUTO-PURGE PRIVACY</span>
+</div>
+</div>
+<!-- Dynamic Converter Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md pt-space-xs">
+<!-- Central Interactive Dropzone (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="relative group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all duration-200 rounded-xl p-space-lg lg:p-space-xl text-center flex flex-col items-center justify-center min-h-[340px] shadow-inner" id="dropzone">
+<!-- Subtle dash decoration with pure CSS styling (no Tailwind border class) -->
+<div class="absolute inset-3 rounded-lg pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity" style="background-image: repeating-linear-gradient(0deg, #737686, #737686 8px, transparent 8px, transparent 16px), repeating-linear-gradient(90deg, #737686, #737686 8px, transparent 8px, transparent 16px), repeating-linear-gradient(180deg, #737686, #737686 8px, transparent 8px, transparent 16px), repeating-linear-gradient(270deg, #737686, #737686 8px, transparent 8px, transparent 16px); background-size: 2px 100%, 100% 2px, 2px 100% , 100% 2px; background-position: 0 0, 0 0, 100% 0, 0 100%; background-repeat: no-repeat;"></div>
+<!-- Biometric overlay preview container (active when photo visa selected) -->
+<div class="hidden absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md p-space-xs rounded-lg shadow-sm text-left" id="biometric-preview-helper">
+<span class="font-caption-mono text-caption-mono text-primary font-bold block">GABARIT ISO: 35 × 45 mm</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Visage: 70-80% du cadre</span>
+</div>
+<!-- Animated Upload Glyph -->
+<div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-space-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[36px]" id="upload-icon">cloud_upload</span>
+</div>
+<!-- Dropzone Dynamic Texts -->
+<h3 class="font-headline-lg text-headline-lg font-bold text-on-surface mb-1" id="dropzone-title">
+                Glissez votre fichier Word ici
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-md" id="dropzone-sub">
+                Formats acceptés : <strong class="font-bold text-on-surface">.docx, .doc</strong> (jusqu'à 100 Mo). Conversion fidèle avec polices vectorisées.
+              </p>
+<!-- Native File Input Wrapper Button -->
+<label class="cursor-pointer inline-flex items-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary hover:bg-primary/90 text-on-primary font-body-md text-body-md font-semibold shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+<span>Choisir un fichier depuis mon ordinateur</span>
+<input accept=".docx,.doc,.pdf,.pptx,.jpg,.jpeg,.png" class="hidden" id="file-input" type="file"/>
+</label>
+<!-- Supported formats pills -->
+<div class="flex items-center flex-wrap justify-center gap-space-xs mt-space-md">
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">.DOCX</span>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">.PDF</span>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">.PPTX</span>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">.JPG/.PNG (Photo)</span>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">∞ ILLIMITÉ</span>
+</div>
+</div>
+<!-- Upload Live Pipeline State (Hidden initially, triggered via JS) -->
+<div class="hidden p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-xs" id="live-progress-bar">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] animate-spin">sync</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface" id="processing-filename">Rapport_Master_CampusFrance_Final.docx</span>
+</div>
+<span class="font-label-numeric text-label-numeric font-bold text-primary" id="progress-percent">78%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-300" id="progress-indicator" style="width: 78%;"></div>
+</div>
+<div class="flex items-center justify-between font-caption-mono text-caption-mono text-on-surface-variant">
+<span>Rasterisation &amp; Préservation typographique...</span>
+<span>Temps estimé : 1.2s</span>
+</div>
+</div>
+</div>
+<!-- Auth & Pipeline Options Sidebar (4 cols) -->
+<div class="lg:col-span-4 flex flex-col justify-between gap-space-md bg-surface-container-low p-space-md rounded-xl">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary font-bold">Synchronisation Cloud</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<h4 class="font-headline-md text-headline-md font-bold text-on-surface leading-snug">
+                Sécurisez et archivez vos conversions
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-space-md">
+                Activez votre coffre-fort sans frais pour retrouver l'historique complet de vos dossiers visa, thèses et documents administratifs à vie.
+              </p>
+<!-- One-Click Fast Auth CTAs -->
+<div class="flex flex-col gap-space-xs">
+<button class="w-full flex items-center justify-center gap-space-sm px-space-md py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-body-md text-body-md font-semibold shadow-sm transition-all text-left" type="button">
+<svg class="w-4 h-4 flex-shrink-0" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span>Se connecter en 1 clic (Google)</span>
+</button>
+<button class="w-full flex items-center justify-center gap-space-sm px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">mail</span>
+<span>Connexion sécurisée par Email</span>
+</button>
+</div>
+</div>
+<!-- Realtime Engine Telemetry Card -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface font-caption-mono text-caption-mono">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+                  Moteur IA Actif
+                </span>
+<span class="text-primary font-bold">DocuMorph v4.2</span>
+</div>
+<div class="flex items-center justify-between font-caption-mono text-caption-mono text-on-surface-variant">
+<span>Intégrité polices :</span>
+<span class="font-bold text-secondary">100% Conforme</span>
+</div>
+<div class="flex items-center justify-between font-caption-mono text-caption-mono text-on-surface-variant">
+<span>Résolution max :</span>
+<span class="font-bold text-on-surface">600 DPI Ultra-Print</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Reassurance Alert Banner -->
+<div class="w-full bg-surface-container-high py-space-sm mt-space-md">
+<div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+<strong>Vos conversions restent archivées de façon permanente</strong> dans votre espace sécurisé pour que vous ne perdiez jamais un document (conservation continue). Téléchargements illimités et sans filigrane.
+        </p>
+</div>
+<div class="flex items-center gap-space-xs font-caption-mono text-caption-mono text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>PROTECTION CHIFFRÉE AES-256</span>
+</div>
+</div>
+</div>
+<!-- Section: Les 4 Outils Clés Gratuits -->
+<section class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-xl w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary font-bold">Catalogue d'outils</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight mt-1">
+          Vos 4 Outils Clés Gratuits
+        </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        Chaque utilitaire est calibré pour satisfaire les exigences techniques rigoureuses des plateformes administratives et universitaires.
+      </p>
+</div>
+<!-- 4 Bento Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Word ↔ PDF -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">swap_horiz</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-primary font-bold uppercase tracking-wider">Moteur DocuMorph</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1 mb-space-xs">
+            Convertisseur Word ↔ PDF
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Conservation stricte des polices d'origine, des tableaux complexes, des indexations numérotées et des marges d'impression.
+          </p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-xs flex items-center justify-between">
+<span class="font-label-numeric text-label-numeric font-medium text-secondary">Fidélité : 99.98%</span>
+<button class="font-body-sm text-body-sm text-primary font-bold hover:underline inline-flex items-center gap-0.5" onclick="selectTab('w2p')" type="button">
+            Lancer <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: PPTX ↔ PDF -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">co_present</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-tertiary font-bold uppercase tracking-wider">Université &amp; Corporate</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1 mb-space-xs">
+            Présentations PPTX ↔ PDF
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Idéal pour soutenances, thèses académiques et rapports stratégiques. Rendu haute résolution de chaque diapositive.
+          </p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-xs flex items-center justify-between">
+<span class="font-label-numeric text-label-numeric font-medium text-secondary">DPI écran &amp; tirage</span>
+<button class="font-body-sm text-body-sm text-primary font-bold hover:underline inline-flex items-center gap-0.5" onclick="selectTab('pp2p')" type="button">
+            Lancer <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Studio Photo Visa & Campus France -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">id_card</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-bold uppercase tracking-wider">Biométrie ICAO 9303</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1 mb-space-xs">
+            Studio Photo Visa &amp; Campus France
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Calibrage certifié 35×45mm (Schengen, France), 50×50mm (USA 2×2"), Canada et Allemagne avec correction de fond neutre unie.
+          </p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-xs flex items-center justify-between">
+<span class="font-label-numeric text-label-numeric font-medium text-secondary">Normes US / FR / DE</span>
+<button class="font-body-sm text-body-sm text-secondary font-bold hover:underline inline-flex items-center gap-0.5" onclick="selectTab('visa')" type="button">
+            Calibrer <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Détourage IA Instantané -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">flare</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-primary font-bold uppercase tracking-wider">IA Détourage 1s</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1 mb-space-xs">
+            Détourage IA instantané
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Suppression immédiate d'arrière-plan : fond blanc pur administratif, fond gris clair consulaire ou transparence PNG ultra nette.
+          </p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-xs flex items-center justify-between">
+<span class="font-label-numeric text-label-numeric font-medium text-secondary">Détection mèches fines</span>
+<button class="font-body-sm text-body-sm text-primary font-bold hover:underline inline-flex items-center gap-0.5" onclick="selectTab('visa')" type="button">
+            Détourer <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Spec & Preset Interactive Showcase -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Left: Image Preview & Visual Demonstration -->
+<div class="lg:col-span-6 relative">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-lg overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="w-3 h-3 rounded-full bg-amber-400"></span>
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant ml-2">ICAO_CALIBRATION_PREVIEW.RAW</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-bold px-2 py-0.5 rounded bg-secondary-container">99.8% CONFORME</span>
+</div>
+<!-- Graphic Biometric Target Canvas -->
+<div class="relative w-full h-80 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, high-precision biometric passport portrait photo of an international applicant on a pure neutral light gray background, framed with subtle digital measurement alignment grids and chin-to-crown golden ratio guidelines in blue, soft studio lighting." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<!-- Calibration Reticle Overlay -->
+<div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center p-space-md">
+<!-- Golden Ratio Head Frame SVG -->
+<svg class="w-48 h-60 text-primary/70" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 200 250">
+<ellipse cx="100" cy="115" rx="65" ry="85" stroke-dasharray="4 4"></ellipse>
+<line stroke="currentColor" stroke-width="0.75" x1="100" x2="100" y1="10" y2="240"></line>
+<line stroke="currentColor" stroke-width="0.75" x1="20" x2="180" y1="110" y2="110"></line>
+<line stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5" x1="40" x2="160" y1="85" y2="85"></line>
+<line stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5" x1="40" x2="160" y1="165" y2="165"></line>
+</svg>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 px-space-xs py-0.5 rounded font-caption-mono text-caption-mono text-on-surface">
+                  Yeux: 32mm du bas | Hauteur tête: 74%
+                </div>
+</div>
+</div>
+<!-- Verification Nodes List -->
+<div class="grid grid-cols-3 gap-space-xs mt-space-sm font-caption-mono text-caption-mono">
+<div class="p-2 rounded bg-surface-container flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>Angle Face 0.0°</span>
+</div>
+<div class="p-2 rounded bg-surface-container flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>Sans Ombres</span>
+</div>
+<div class="p-2 rounded bg-surface-container flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>Fond Neutre</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Text & Country Presets Selector -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-secondary font-bold">Standards Consulaires Globaux</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight mt-1 mb-space-sm">
+              Gabarits officiels validés pour chaque ambassade
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Ne prenez aucun risque de rejet consulaire pour vos dossiers Campus France, tirages Diversity Visa (DV Lottery) ou permis de travail internationaux.
+            </p>
+</div>
+<!-- Country Specs Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<span class="text-2xl">🇫🇷</span>
+<div>
+<p class="font-headline-md text-body-md font-bold text-on-surface">Campus France / Schengen</p>
+<p class="font-caption-mono text-caption-mono text-primary font-semibold">35 × 45 mm • Fond gris clair</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validé Études en France</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<span class="text-2xl">🇺🇸</span>
+<div>
+<p class="font-headline-md text-body-md font-bold text-on-surface">USA / Green Card / DS-160</p>
+<p class="font-caption-mono text-caption-mono text-primary font-semibold">51 × 51 mm (2×2") • Fond blanc</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">600 × 600 px min</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<span class="text-2xl">🇨🇦</span>
+<div>
+<p class="font-headline-md text-body-md font-bold text-on-surface">Canada / IRCC Permis</p>
+<p class="font-caption-mono text-caption-mono text-primary font-semibold">50 × 70 mm • Tête 31-36 mm</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Conforme biométrie fédérale</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<span class="text-2xl">🇩🇪</span>
+<div>
+<p class="font-headline-md text-body-md font-bold text-on-surface">Allemagne / Pass-Foto</p>
+<p class="font-caption-mono text-caption-mono text-primary font-semibold">35 × 45 mm • Biometrisches Foto</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Norme Bundesdruckerei</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-body-md text-body-md font-semibold hover:bg-primary/90 transition-colors shadow-sm inline-flex items-center gap-space-xs" onclick="selectTab('visa')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+<span>Tester une photo maintenant</span>
+</button>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Contrôle de conformité en 3 secondes</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section Avis & Confiance Communautaire -->
+<section class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-xl w-full">
+<!-- Big Stat Counter & Trust Header -->
+<div class="p-space-lg rounded-xl bg-surface-container flex flex-col md:flex-row items-center justify-between gap-space-lg mb-space-xl">
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[32px]">school</span>
+</div>
+<div>
+<div class="font-display-lg text-headline-xl lg:text-display-lg font-extrabold text-on-surface leading-none">
+            +45 000
+          </div>
+<p class="font-headline-md text-headline-md font-semibold text-secondary mt-1">
+            Étudiants Campus France &amp; candidats aux visas Canada &amp; USA accompagnés avec succès
+          </p>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end flex-shrink-0">
+<div class="flex items-center gap-1 text-amber-500 mb-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold ml-1">4.96/5</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Basé sur les retours de dépôts consulaires certifiés</span>
+</div>
+</div>
+<!-- Testimonials 3 Columns Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Testimonial 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-md flex flex-col justify-between">
+<div bg-surface-container-lowest="" border-outline-variant="" border-t="" class="flex flex-col gap-space-&lt;/main&gt;&lt;footer class=" mt-space-xl"="" w-full=""><div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-xl"><div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-xl pb-space-lg border-b border-surface-container"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">verified</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Conforme ICAO 9303</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Standards Campus France, US, Schengen</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">lock</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Cryptage 256-bit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Chiffrement sécurisé de bout en bout</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">high_quality</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Zéro Perte Qualité</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Maintien dpi &amp; métadonnées biométriques</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">all_inclusive</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">100% Gratuit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Usage illimité sans filigrane imposé</p></div></div></div><div class="flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><span class="font-headline-lg text-headline-md text-primary font-bold">DocuVisa AI</span><span class="font-caption-mono text-caption-mono text-on-surface-variant">© 2025 Tous droits réservés. Traitement cloud sécurisé.</span></div><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Normes ICAO 9303</a><a class="hover:text-on-surface transition-colors" href="#">Politique de Confidentialité</a><a class="hover:text-on-surface transition-colors" href="#">Documentation API</a><a class="hover:text-on-surface transition-colors" href="#">Mentions Légales</a></div></div></div></div></div></div></section></div></main></body></html>

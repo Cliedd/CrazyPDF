@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>DocuVisa AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","on-primary-container":"#eeefff","surface-dim":"#d2d9f4","on-primary-fixed-variant":"#003ea8","surface-container-lowest":"#ffffff","surface-bright":"#faf8ff","on-tertiary":"#ffffff","surface-container-high":"#e2e7ff","on-surface":"#131b2e","tertiary-container":"#585be6","primary-container":"#2563eb","on-error":"#ffffff","background":"#faf8ff","secondary":"#006c4a","error-container":"#ffdad6","tertiary-fixed-dim":"#c0c1ff","tertiary":"#3e3fcc","tertiary-fixed":"#e1e0ff","outline-variant":"#c3c6d7","on-error-container":"#93000a","inverse-surface":"#283044","primary-fixed":"#dbe1ff","primary":"#004ac6","primary-fixed-dim":"#b4c5ff","secondary-fixed-dim":"#68dba9","on-tertiary-fixed-variant":"#2f2ebe","on-background":"#131b2e","secondary-fixed":"#85f8c4","outline":"#737686","on-primary-fixed":"#00174b","on-tertiary-container":"#f1eeff","on-surface-variant":"#434655","on-secondary-fixed-variant":"#005137","secondary-container":"#82f5c1","surface-tint":"#0053db","on-tertiary-fixed":"#07006c","error":"#ba1a1a","surface":"#faf8ff","on-secondary":"#ffffff","on-secondary-fixed":"#002114","surface-container":"#eaedff","inverse-primary":"#b4c5ff","surface-container-low":"#f2f3ff","surface-variant":"#dae2fd","inverse-on-surface":"#eef0ff","surface-container-highest":"#dae2fd","on-secondary-container":"#00714e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-tablet":"1.5rem","space-lg":"1.5rem","space-sm":"0.5rem",gutter:"1.25rem","space-md":"1rem",margin:"1rem","space-xs":"0.25rem","gutter-desktop":"1.5rem","margin-desktop":"2.5rem","space-xl":"2.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"label-numeric":["JetBrains Mono"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-badge":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"caption-mono":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.025em",fontWeight:"700"}],"label-numeric":["13px",{lineHeight:"16px",letterSpacing:"-0.02em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-badge":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"700"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"caption-mono":["11px",{lineHeight:"14px",fontWeight:"400"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant"><div class="h-16 max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><a class="flex items-center gap-space-sm" data-path="accueil-et-conversion" href="#"><img alt="DocuVisa AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VnrxsIkm3Q-YjPOX3mKrELAAmbJlki3aVldtwHdnalPghcFRPg0ncE6Lr6I_BSypchn6g1kBNc4vlH8anTgDVdJ7yYh61XVG5XDPGyYifFu52mxg72j82KqHjEfAW9yNaivDRVE7eweS78DGUKmer6NF3PwnpYvSUbE6aeR0lDNM1cbC_gY43wuWLvgb2xBYt3tI_-xVe_xtS5igKVIxnHqubVyTOkYNfLw4LC8WwouUn4nypUYHDG8cQ"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">DocuVisa<span class="text-primary">.AI</span></span><span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">DocuMorph &amp; VisaStudio</span></div></a><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-badge text-label-badge uppercase tracking-wider">100% Gratuit &amp; Illimité</span></div></div><nav class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-lg" data-active-classes="bg-primary text-on-primary font-body-md text-body-md rounded-lg shadow-sm"><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="accueil-et-conversion" href="#">Accueil &amp; Conversion</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="studio-photo-visa" href="#">Studio Photo Visa &amp; Campus France</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="detourage-ia" href="#">Détourage IA</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="mes-documents-et-exports" href="#">Mes Documents &amp; Exports</a></nav><div class="flex items-center gap-space-sm flex-shrink-0"><div class="flex items-center px-space-sm py-1 rounded-lg bg-surface-container border border-outline-variant font-caption-mono text-caption-mono text-on-surface font-semibold"><span class="text-secondary mr-1 font-bold">FR</span><span class="text-outline-variant">|</span><span class="text-on-surface-variant ml-1 hover:text-on-surface cursor-pointer">EN</span></div><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-lowest border border-outline-variant font-body-md text-body-md text-on-surface hover:bg-surface-container hover:text-on-surface transition-all shadow-[0_1px_3px_rgba(15,23,42,0.04)]" data-path="connexion-et-compte" href="#"><span class="material-symbols-outlined text-primary text-[18px]">lock</span><span>Connexion / Mon Compte</span></a><div class="p-0.5 rounded-full ring-2 ring-primary/20 hover:ring-primary transition-all cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/></div></div></div></header><main class="w-full pt-16 bg-background flex-grow"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-lg lg:py-space-xl flex flex-col gap-space-lg">
+<!-- Entête Contextuelle & Badges Télémétriques -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-caption-mono text-caption-mono uppercase tracking-wider text-primary font-bold">DocuVault™ Architecture</span>
+<span class="text-outline-variant text-[10px]">•</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Stockage Immuable
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Mon Coffre-fort Numérique &amp; Historique des Travaux</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Espace sécurisé de conservation perpétuelle. Tous vos rendus biométriques et conversions documentaires sont enregistrés sans limite de durée pour vos dossiers internationaux.
+        </p>
+</div>
+<!-- Quick Action: Export All -->
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md shadow-sm transition-all" id="batchExportBtn">
+<span class="material-symbols-outlined text-[18px] text-primary">archive</span>
+<span>Exporter Tout (.ZIP)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-body-md text-body-md shadow-sm transition-all">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Nouveau Document</span>
+</button>
+</div>
+</div>
+<!-- Quick Telemetry Stats Bento Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">Archives Actives</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">5 Documents</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Disponibles 24/7 en mémoire cloud</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[24px]">folder_special</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">Coût Facturé</span>
+<span class="font-headline-lg text-headline-lg text-secondary font-bold mt-1">0 FCFA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Accès 100% Gratuit &amp; Illimité</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">savings</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">Qualité Biométrique</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold mt-1">100% Conforme</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Certification ICAO 9303 / ISO/IEC</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Carte Spécifique : Garantie de Sauvegarde & Non-Suppression -->
+<div class="relative overflow-hidden p-space-md lg:p-space-lg rounded-xl bg-gradient-to-r from-primary-fixed/40 via-surface-container-low to-surface-container-lowest shadow-sm">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md relative z-10">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[26px]">shield_lock</span>
+</div>
+<div class="flex flex-col gap-1 max-w-3xl">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary font-bold">Règle de Sauvegarde Stricte</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-caption-mono text-caption-mono">Intégrité Pérenne</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Protection &amp; Archivage Permanent de vos dossiers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Pour garantir la continuité de vos candidatures d'études (Campus France, IRCC, universités allemandes), vos fichiers convertis et vos photos conformes restent sauvegardés en permanence dans votre compte sécurisé. Vous pouvez les réexporter et les télécharger à tout moment sans limite et sans frais.
+            </p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-sm w-full lg:w-auto flex-shrink-0">
+<div class="flex items-center gap-2 px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">lock</span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Suppression volontairement désactivée</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Contrôles du Tableau : Recherche & Filtres par catégorie -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Filtres Pilules (Tabs) -->
+<div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface-container-low overflow-x-auto" id="filterContainer">
+<button class="filter-tab active px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md font-semibold shadow-sm transition-all whitespace-nowrap" data-filter="all">
+          Tous (5)
+        </button>
+<button class="filter-tab px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-all whitespace-nowrap" data-filter="word-pdf">
+          Conversions Word/PDF (2)
+        </button>
+<button class="filter-tab px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-all whitespace-nowrap" data-filter="pptx">
+          Présentations PPTX (1)
+        </button>
+<button class="filter-tab px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-all whitespace-nowrap" data-filter="photo-visa">
+          Photos Visa &amp; Biométrie (2)
+        </button>
+</div>
+<!-- Recherche Rapide -->
+<div class="relative flex-grow max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline text-body-md font-body-md shadow-sm outline-none focus:bg-surface-bright transition-all" id="vaultSearchInput" placeholder="Rechercher par nom de fichier, type ou statut..." type="text"/>
+</div>
+</div>
+<!-- Tableau Interactif des Archives -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- En-tête de Table Desktop -->
+<div class="hidden md:grid grid-cols-12 gap-space-md px-space-lg py-3.5 bg-surface-container-low text-on-surface-variant font-caption-mono text-caption-mono uppercase tracking-wider">
+<div class="col-span-5">Nom du Fichier &amp; Source</div>
+<div class="col-span-2">Catégorie</div>
+<div class="col-span-2">Format / Taille</div>
+<div class="col-span-2">Statut de Conformité</div>
+<div class="col-span-1 text-right">Actions</div>
+</div>
+<!-- Lignes de Fichiers -->
+<div class="divide-y divide-surface-container" id="documentsList">
+<!-- Fichier 1 : Roxane Campus France Photo -->
+<div class="doc-row p-space-md md:px-space-lg md:py-space-md grid grid-cols-1 md:grid-cols-12 gap-space-sm md:gap-space-md items-center hover:bg-surface-container-low/50 transition-colors" data-category="photo-visa" data-name="photo campusfrance roxane 35x45 jpg">
+<div class="col-span-1 md:col-span-5 flex items-center gap-space-md min-w-0">
+<div class="relative w-12 h-14 rounded-lg overflow-hidden bg-surface-container flex-shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up professional studio portrait of an Indian woman smiling warmly, dressed in a navy blazer over a light blue top, perfectly compliant with French visa specifications, clean neutral off-white background, soft studio rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDvY2_N-egfW_-PMilqbCNCLAuO2X2D35o4ldwUCEcYTJ414VUFR0bLPme9FzHHHCYYl-hG-MZNG6bQpY4-6QDaXunNqXP5UG2hr4Py4SihaDDwnx5WZrqU4_kiQU_iCNeImKVR9vkbxJU_kMJGX9C2M89Qfx8wuLyOXaHLnoUzH4dvjPjugjLnU_u23LGS9K88cOCyKuDJTW2Fi-V4H6g6hzcfvsL0sInOnshm3h_X-xFPSCZNEPXbg"/>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary rounded-tl-sm px-1 py-0.2">
+<span class="material-symbols-outlined text-[10px]">face</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Photo_CampusFrance_Roxane_35x45.jpg</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-caption-mono text-[10px] uppercase font-bold">FR-VISA</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant truncate">ID: #DX-9902 • Biométrie Faciale ICAO 9303</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Type: </span>
+<span class="px-2 py-1 rounded-md bg-primary-fixed/60 text-on-primary-fixed font-body-sm text-body-sm font-semibold">Photo Visa France</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Format: </span>
+<div class="flex flex-col">
+<span class="font-label-numeric text-label-numeric text-on-surface">35x45mm (300 DPI)</span>
+<span class="font-caption-mono text-[10px] text-on-surface-variant">Visage 70-80% cadré</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Statut: </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase font-bold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Conforme 100%
+            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-space-xs mt-2 md:mt-0">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors" title="Télécharger le fichier officiel">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<a class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-path="studio-photo-visa" href="#" title="Voir dans le Studio Photo">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</a>
+</div>
+</div>
+<!-- Fichier 2 : Lettre Motivation Word vers PDF -->
+<div class="doc-row p-space-md md:px-space-lg md:py-space-md grid grid-cols-1 md:grid-cols-12 gap-space-sm md:gap-space-md items-center hover:bg-surface-container-low/50 transition-colors" data-category="word-pdf" data-name="lettre motivation master informatique docx pdf">
+<div class="col-span-1 md:col-span-5 flex items-center gap-space-md min-w-0">
+<div class="w-12 h-14 rounded-lg bg-primary-container/10 text-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">description</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Lettre_Motivation_Master_Informatique</span>
+<span class="font-caption-mono text-caption-mono text-primary font-bold">.docx ➔ .pdf</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant truncate">Export PDF/A-1b pour transmission consulaire</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Type: </span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold">Word en PDF</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Format: </span>
+<span class="font-label-numeric text-label-numeric text-on-surface">1.2 Mo (3 pages A4)</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Statut: </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase font-bold">
+<span class="material-symbols-outlined text-[14px]">task_alt</span>
+              Converti avec succès
+            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-space-xs mt-2 md:mt-0">
+<button class="p-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm" title="Télécharger le PDF prêt">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" title="Re-convertir avec de nouveaux réglages">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</div>
+<!-- Fichier 3 : Dossier Justificatifs PDF en Word OCR -->
+<div class="doc-row p-space-md md:px-space-lg md:py-space-md grid grid-cols-1 md:grid-cols-12 gap-space-sm md:gap-space-md items-center hover:bg-surface-container-low/50 transition-colors" data-category="word-pdf" data-name="dossier campusfrance justificatifs releves pdf docx">
+<div class="col-span-1 md:col-span-5 flex items-center gap-space-md min-w-0">
+<div class="w-12 h-14 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">document_scanner</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Dossier_CampusFrance_Justificatifs_Releves</span>
+<span class="font-caption-mono text-caption-mono text-tertiary font-bold">.pdf ➔ .docx</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant truncate">Reconnaissance de texte OCR multicouche (Français)</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Type: </span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold">PDF en Word OCR</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Format: </span>
+<span class="font-label-numeric text-label-numeric text-on-surface">4.8 Mo (12 pages)</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Statut: </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-badge text-label-badge uppercase font-bold">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+              Prêt modifiable
+            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-space-xs mt-2 md:mt-0">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors" title="Télécharger le DOCX modifiable">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- Fichier 4 : Présentation Soutenance PPTX en PDF -->
+<div class="doc-row p-space-md md:px-space-lg md:py-space-md grid grid-cols-1 md:grid-cols-12 gap-space-sm md:gap-space-md items-center hover:bg-surface-container-low/50 transition-colors" data-category="pptx" data-name="presentation soutenance projet fin etudes pptx pdf">
+<div class="col-span-1 md:col-span-5 flex items-center gap-space-md min-w-0">
+<div class="w-12 h-14 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">slideshow</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Presentation_Soutenance_Projet_Fin_Etudes</span>
+<span class="font-caption-mono text-caption-mono text-primary font-bold">.pptx ➔ .pdf</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant truncate">Préservation intégrale des polices vectorielles &amp; diapos</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Type: </span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold">PPTX en PDF</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Format: </span>
+<span class="font-label-numeric text-label-numeric text-on-surface">14.5 Mo (28 diapos)</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Statut: </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase font-bold">
+<span class="material-symbols-outlined text-[14px]">task_alt</span>
+              Converti avec succès
+            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-space-xs mt-2 md:mt-0">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors" title="Télécharger le diaporama PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- Fichier 5 : Photo Visa USA DS-160 -->
+<div class="doc-row p-space-md md:px-space-lg md:py-space-md grid grid-cols-1 md:grid-cols-12 gap-space-sm md:gap-space-md items-center hover:bg-surface-container-low/50 transition-colors" data-category="photo-visa" data-name="photo usa ds160 lottery 2x2inch jpg">
+<div class="col-span-1 md:col-span-5 flex items-center gap-space-md min-w-0">
+<div class="relative w-12 h-14 rounded-lg overflow-hidden bg-surface-container flex-shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Digital passport photo format 2x2 inches for American visa DS-160, featuring an Indian professional woman with a soft centered gaze, clean pure white background with zero shadows, crisp hair outlines, high resolution biometric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdnpkxkIuvkNDnuMq698w1t5n5vuokY-hasQoUhuXPrQAOG7pRK5uN6FJOOzZZn8dziYs3P5Q1ZTmZ60DjRlPNmx60dMgV9hZXHRKwdwNptNMw3NQSlCPZag8AlXmluCfiOaJMBT-VS8KnNlePvgIVmow-0ovQFZvxUZXTHtk5BoCuTy33PPBd-f51XJTYiNtLT0md2QLbKXrDig3CDBzgfl9FzwzS7l9aCCpJ1nDcuj4nY-x-mnTpIA"/>
+<div class="absolute bottom-0 right-0 bg-secondary text-on-secondary rounded-tl-sm px-1 py-0.2">
+<span class="material-symbols-outlined text-[10px]">check</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Photo_USA_DS160_Lottery_2x2inch.jpg</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-caption-mono text-[10px] uppercase font-bold">US-VISA</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant truncate">Square ratio 1:1 • Conforme US Dept of State</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Type: </span>
+<span class="px-2 py-1 rounded-md bg-primary-fixed/60 text-on-primary-fixed font-body-sm text-body-sm font-semibold">Photo Visa USA</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Format: </span>
+<div class="flex flex-col">
+<span class="font-label-numeric text-label-numeric text-on-surface">600x600 px (2x2")</span>
+<span class="font-caption-mono text-[10px] text-on-surface-variant">Compression sRGB 240 KB</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center md:block">
+<span class="md:hidden font-caption-mono text-caption-mono text-on-surface-variant w-28">Statut: </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase font-bold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+              Fond blanc certifié
+            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-space-xs mt-2 md:mt-0">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors" title="Télécharger photo prête">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- État vide lors de la recherche -->
+<div class="hidden p-space-xl flex-col items-center justify-center text-center" id="noResultsState">
+<span class="material-symbols-outlined text-[48px] text-outline-variant mb-2">find_in_page</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-semibold">Aucun document correspondant</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-1">
+          Modifiez vos termes de recherche ou sélectionnez la catégorie "Tous". Vos documents restent tous archivés sans expiration.
+        </p>
+</div>
+</div>
+<!-- Section Diagnostic & Sécurité Avancée -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Carte Conformité Campus France & Ambassades -->
+<div class="p-space-md lg:p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<span class="font-caption-mono text-caption-mono uppercase tracking-wider font-bold">Standard Études &amp; Visas</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">Compatibilité Systèmes Consulaire</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Les fichiers archivés respectent à la virgule près les limitations de poids (&lt; 5 Mo pour Campus France) et de résolution optique exigées par les portails ministériels.
+          </p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Intégrité métadonnées</span>
+<span class="font-label-badge text-label-badge text-secondary font-bold uppercase">Préservée à 100%</span>
+</div>
+</div>
+<!-- Carte Règle de Conservation Sans Supprimer -->
+<div class="p-space-md lg:p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">history_toggle_off</span>
+<span class="font-caption-mono text-caption-mono uppercase tracking-wider font-bold">Politique Zéro Perte</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">Pourquoi aucun bouton "Supprimer" ?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Une erreur de suppression involontaire lors de démarches d'immigration peut retarder un dossier de visa de plusieurs semaines. Nous verrouillons l'historique complet pour votre sérénité.
+          </p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Protection contre perte</span>
+<span class="font-label-badge text-label-badge text-primary font-bold uppercase">Verrouillage Actif</span>
+</div>
+</div>
+<!-- Carte Réutilisation & Ré-exports Express -->
+<div class="p-space-md lg:p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-tertiary">
+<span class="material-symbols-outlined text-[20px]">cached</span>
+<span class="font-caption-mono text-caption-mono uppercase tracking-wider font-bold">Réutilisation Illimitée</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">Téléchargez à l'infini</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Besoin d'un second exemplaire pour l'entretien à l'ambassade ou pour l'inscription universitaire en France ? Vos originaux et conversions restent prêts à être réémis en un clic.
+          </p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Frais supplémentaires</span>
+<span class="font-label-badge text-label-badge text-secondary font-bold uppercase">0 FCFA Garanti</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast Dynamique -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 p-space-md rounded-xl bg-on-surface text-on-primary shadow-xl flex items-center gap-3" id="vaultToast">
+<span class="material-symbols-outlined text-secondary-fixed text-[24px]">cloud_done</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-on-primary" id="toastTitle">Téléchargement prêt</span>
+<span class="font-caption-mono text-caption-mono text-surface-dim" id="toastMessage">Votre document est en cours de récupération sécurisée.</span>
+</div>
+</div>
+</div>
+<script>
+  // Filtrage et Recherche Interactive du Coffre-fort
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const searchInput = document.getElementById('vaultSearchInput');
+  const rows = document.querySelectorAll('.doc-row');
+  const noResultsState = document.getElementById('noResultsState');
+  const toast = document.getElementById('vaultToast');
+  const toastTitle = document.getElementById('toastTitle');
+  const toastMessage = document.getElementById('toastMessage');
+
+  let currentFilter = 'all';
+
+  function applyFilters() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const category = row.getAttribute('data-category');
+      const rowText = row.getAttribute('data-name');
+      const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+      const matchesSearch = rowText.includes(searchTerm);
+
+      if (matchesFilter && matchesSearch) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0) {
+      noResultsState.classList.remove('hidden');
+      noResultsState.classList.add('flex');
+    } else {
+      noResultsState.classList.add('hidden');
+      noResultsState.classList.remove('flex');
+    }
+  }
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => {
+        t.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-sm');
+        t.classList.add('text-on-surface-variant');
+      });
+      tab.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-sm');
+      tab.classList.remove('text-on-surface-variant');
+
+      currentFilter = tab.getAttribute('data-filter');
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  // Micro-interaction : Toast de confirmation pour téléchargement
+  function showToast(title, msg) {
+    toastTitle.textContent = title;
+    toastMessage.textContent = msg;
+    toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+    }, 3500);
+  }
+
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const buttonTitle = btn.getAttribute('title') || btn.textContent.trim();
+      if (buttonTitle.includes('Télécharger') || buttonTitle.includes('Exporter')) {
+        showToast('Téléchargement lancé', 'Votre fichier conforme est généré depuis votre coffre sécurisé.');
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-space-xl"><div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-xl"><div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-xl pb-space-lg border-b border-surface-container"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">verified</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Conforme ICAO 9303</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Standards Campus France, US, Schengen</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">lock</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Cryptage 256-bit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Chiffrement sécurisé de bout en bout</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">high_quality</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Zéro Perte Qualité</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Maintien dpi &amp; métadonnées biométriques</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">all_inclusive</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">100% Gratuit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Usage illimité sans filigrane imposé</p></div></div></div><div class="flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><span class="font-headline-lg text-headline-md text-primary font-bold">DocuVisa AI</span><span class="font-caption-mono text-caption-mono text-on-surface-variant">© 2025 Tous droits réservés. Traitement cloud sécurisé.</span></div><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Normes ICAO 9303</a><a class="hover:text-on-surface transition-colors" href="#">Politique de Confidentialité</a><a class="hover:text-on-surface transition-colors" href="#">Documentation API</a><a class="hover:text-on-surface transition-colors" href="#">Mentions Légales</a></div></div></div></footer></body></html>

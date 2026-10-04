@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>DocuVisa AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","on-primary-container":"#eeefff","surface-dim":"#d2d9f4","on-primary-fixed-variant":"#003ea8","surface-container-lowest":"#ffffff","surface-bright":"#faf8ff","on-tertiary":"#ffffff","surface-container-high":"#e2e7ff","on-surface":"#131b2e","tertiary-container":"#585be6","primary-container":"#2563eb","on-error":"#ffffff","background":"#faf8ff","secondary":"#006c4a","error-container":"#ffdad6","tertiary-fixed-dim":"#c0c1ff","tertiary":"#3e3fcc","tertiary-fixed":"#e1e0ff","outline-variant":"#c3c6d7","on-error-container":"#93000a","inverse-surface":"#283044","primary-fixed":"#dbe1ff","primary":"#004ac6","primary-fixed-dim":"#b4c5ff","secondary-fixed-dim":"#68dba9","on-tertiary-fixed-variant":"#2f2ebe","on-background":"#131b2e","secondary-fixed":"#85f8c4","outline":"#737686","on-primary-fixed":"#00174b","on-tertiary-container":"#f1eeff","on-surface-variant":"#434655","on-secondary-fixed-variant":"#005137","secondary-container":"#82f5c1","surface-tint":"#0053db","on-tertiary-fixed":"#07006c","error":"#ba1a1a","surface":"#faf8ff","on-secondary":"#ffffff","on-secondary-fixed":"#002114","surface-container":"#eaedff","inverse-primary":"#b4c5ff","surface-container-low":"#f2f3ff","surface-variant":"#dae2fd","inverse-on-surface":"#eef0ff","surface-container-highest":"#dae2fd","on-secondary-container":"#00714e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-tablet":"1.5rem","space-lg":"1.5rem","space-sm":"0.5rem",gutter:"1.25rem","space-md":"1rem",margin:"1rem","space-xs":"0.25rem","gutter-desktop":"1.5rem","margin-desktop":"2.5rem","space-xl":"2.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"label-numeric":["JetBrains Mono"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-badge":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"caption-mono":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.025em",fontWeight:"700"}],"label-numeric":["13px",{lineHeight:"16px",letterSpacing:"-0.02em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-badge":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"700"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"caption-mono":["11px",{lineHeight:"14px",fontWeight:"400"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant"><div class="h-16 max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><a class="flex items-center gap-space-sm" data-path="accueil-et-conversion" href="#"><img alt="DocuVisa AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VnrxsIkm3Q-YjPOX3mKrELAAmbJlki3aVldtwHdnalPghcFRPg0ncE6Lr6I_BSypchn6g1kBNc4vlH8anTgDVdJ7yYh61XVG5XDPGyYifFu52mxg72j82KqHjEfAW9yNaivDRVE7eweS78DGUKmer6NF3PwnpYvSUbE6aeR0lDNM1cbC_gY43wuWLvgb2xBYt3tI_-xVe_xtS5igKVIxnHqubVyTOkYNfLw4LC8WwouUn4nypUYHDG8cQ"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">DocuVisa<span class="text-primary">.AI</span></span><span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">DocuMorph &amp; VisaStudio</span></div></a><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-badge text-label-badge uppercase tracking-wider">100% Gratuit &amp; Illimité</span></div></div><nav class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-lg" data-active-classes="bg-primary text-on-primary font-body-md text-body-md rounded-lg shadow-sm"><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="accueil-et-conversion" href="#">Accueil &amp; Conversion</a><a aria-current="page" class="px-space-md py-1.5 transition-colors whitespace-nowrap bg-primary text-on-primary font-body-md text-body-md rounded-lg shadow-sm" data-path="studio-photo-visa" href="#">Studio Photo Visa &amp; Campus France</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="detourage-ia" href="#">Détourage IA</a><a class="px-space-md py-1.5 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="mes-documents-et-exports" href="#">Mes Documents &amp; Exports</a></nav><div class="flex items-center gap-space-sm flex-shrink-0"><div class="flex items-center px-space-sm py-1 rounded-lg bg-surface-container border border-outline-variant font-caption-mono text-caption-mono text-on-surface font-semibold"><span class="text-secondary mr-1 font-bold">FR</span><span class="text-outline-variant">|</span><span class="text-on-surface-variant ml-1 hover:text-on-surface cursor-pointer">EN</span></div><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-lowest border border-outline-variant font-body-md text-body-md text-on-surface hover:bg-surface-container hover:text-on-surface transition-all shadow-[0_1px_3px_rgba(15,23,42,0.04)]" data-path="connexion-et-compte" href="#"><span class="material-symbols-outlined text-primary text-[18px]">lock</span><span>Connexion / Mon Compte</span></a><div class="p-0.5 rounded-full ring-2 ring-primary/20 hover:ring-primary transition-all cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/></div></div></div></header><main class="w-full pt-16 bg-background flex-grow"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient elements -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-24 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 right-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-lg lg:py-space-xl">
+<!-- Breadcrumbs & Status Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs font-caption-mono text-caption-mono text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">DocuVisa Studio</span>
+<span>/</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Biométrie ICAO</span>
+<span>/</span>
+<span class="text-on-surface font-semibold">Campus France &amp; Visas Internationaux</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase tracking-wider shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+            Algorithme IA V4.2 Actif
+          </span>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">
+            ISO/IEC 19794-5 • Calibrage instantané
+          </span>
+</div>
+</div>
+<!-- Section Title & Descriptor Banner -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<div class="inline-flex items-center gap-space-xs px-2.5 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-badge text-label-badge uppercase tracking-wider mb-space-xs">
+            Module Biométrique Haute Précision
+          </div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+            Studio Photo Visa &amp; <span class="text-primary">Immigration</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Générez et validez des photographies d'identité aux normes consulaires les plus strictes en temps réel. Analyse faciale conforme Campus France, France-Visas, IRCC et DS-160.
+          </p>
+</div>
+<!-- Live specs indicator -->
+<div class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl bg-surface-container shadow-sm flex-shrink-0">
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase">Précision Règle</span>
+<span class="font-label-numeric text-label-numeric text-primary font-bold">0.05 mm/px</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase">Résolution Cible</span>
+<span class="font-label-numeric text-label-numeric text-on-surface font-bold">300 DPI (UHD)</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase">Coût Traitement</span>
+<span class="font-label-numeric text-label-numeric text-secondary font-bold">0 FCFA / 100% Offert</span>
+</div>
+</div>
+</div>
+<!-- Destination Presets Rail (Bento Cards) -->
+<div class="mb-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<label class="font-body-sm text-body-sm text-on-surface font-semibold uppercase tracking-wider">
+            Sélectionner la norme consulaire de destination
+          </label>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">4 standards majeurs pré-configurés</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm" id="preset-container">
+<!-- Card 1: France & Campus France (Active) -->
+<div class="preset-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-md cursor-pointer transition-all duration-200 ring-2 ring-primary" data-preset="france">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary rounded-t-xl"></div>
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span aria-label="France" class="text-2xl" role="img">🇫🇷</span>
+<span class="font-headline-md text-body-lg text-on-surface font-bold leading-tight">France</span>
+</div>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">ACTIF</span>
+</div>
+<div class="font-body-sm text-body-sm text-primary font-semibold mb-1">Campus France &amp; Visas</div>
+<div class="space-y-0.5 font-caption-mono text-caption-mono text-on-surface-variant">
+<div>• Dimensions : <strong class="text-on-surface">35 × 45 mm</strong></div>
+<div>• Hauteur tête : <strong class="text-on-surface">32 - 36 mm (70-80%)</strong></div>
+<div>• Fond : <strong class="text-on-surface">Bleuté / Gris clair uni</strong></div>
+</div>
+</div>
+<!-- Card 2: Canada IRCC -->
+<div class="preset-card relative p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-lowest shadow-sm hover:shadow-md cursor-pointer transition-all duration-200" data-preset="canada">
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span aria-label="Canada" class="text-2xl" role="img">🇨🇦</span>
+<span class="font-headline-md text-body-lg text-on-surface font-bold leading-tight">Canada</span>
+</div>
+<span class="font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">IRCC</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mb-1">Permis d'études &amp; RP</div>
+<div class="space-y-0.5 font-caption-mono text-caption-mono text-on-surface-variant">
+<div>• Dimensions : <strong class="text-on-surface">50 × 70 mm / 35×45</strong></div>
+<div>• Hauteur tête : <strong class="text-on-surface">31 - 36 mm</strong></div>
+<div>• Fond : <strong class="text-on-surface">Blanc pur / Neutre</strong></div>
+</div>
+</div>
+<!-- Card 3: Allemagne -->
+<div class="preset-card relative p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-lowest shadow-sm hover:shadow-md cursor-pointer transition-all duration-200" data-preset="germany">
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span aria-label="Allemagne" class="text-2xl" role="img">🇩🇪</span>
+<span class="font-headline-md text-body-lg text-on-surface font-bold leading-tight">Allemagne</span>
+</div>
+<span class="font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">Passbild</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mb-1">Visa Étudiant &amp; Chancenkarte</div>
+<div class="space-y-0.5 font-caption-mono text-caption-mono text-on-surface-variant">
+<div>• Dimensions : <strong class="text-on-surface">35 × 45 mm</strong></div>
+<div>• Cadrage : <strong class="text-on-surface">Biométrique strict</strong></div>
+<div>• Fond : <strong class="text-on-surface">Gris neutre sans ombre</strong></div>
+</div>
+</div>
+<!-- Card 4: USA -->
+<div class="preset-card relative p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-lowest shadow-sm hover:shadow-md cursor-pointer transition-all duration-200" data-preset="usa">
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span aria-label="États-Unis" class="text-2xl" role="img">🇺🇸</span>
+<span class="font-headline-md text-body-lg text-on-surface font-bold leading-tight">États-Unis</span>
+</div>
+<span class="font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">DOS</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mb-1">DS-160, F1 &amp; Green Card</div>
+<div class="space-y-0.5 font-caption-mono text-caption-mono text-on-surface-variant">
+<div>• Dimensions : <strong class="text-on-surface">2 × 2 pouces (600×600)</strong></div>
+<div>• Ratio tête : <strong class="text-on-surface">50% - 69%</strong></div>
+<div>• Fond : <strong class="text-on-surface">100% Blanc pur</strong></div>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN INTERACTIVE WORKBENCH: 2 Powerful Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Biometric Visualizer & Dynamic Mask (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-2xl p-space-md md:p-space-lg shadow-md flex flex-col">
+<!-- Visualizer Toolbar -->
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">aspect_ratio</span>
+<span class="font-headline-md text-headline-md text-on-surface">Viseur Biométrique</span>
+<span class="font-caption-mono text-caption-mono px-2 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">35 × 45 mm (413 × 531 px)</span>
+</div>
+<!-- Quick Canvas Toggles -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+<button class="px-2 py-1 rounded bg-surface-container-lowest shadow-xs text-primary font-caption-mono text-caption-mono font-semibold flex items-center gap-1 hover:text-primary transition-colors" id="toggle-grid-btn" title="Masquer / Afficher le gabarit">
+<span class="material-symbols-outlined text-[16px]">grid_4x4</span>
+<span>Gabarit</span>
+</button>
+<button class="px-2 py-1 rounded text-on-surface-variant hover:text-on-surface font-caption-mono text-caption-mono transition-colors flex items-center gap-1" id="reset-view-btn" title="Réinitialiser le centrage">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Centrer</span>
+</button>
+</div>
+</div>
+<!-- PHOTO CANVAS VIEWER WITH BIOMETRIC HUD -->
+<div class="relative w-full aspect-[4/5] sm:max-h-[520px] rounded-xl overflow-hidden bg-surface-dim/40 flex items-center justify-center shadow-inner select-none" id="viewport-frame">
+<!-- Clean Background Layer for AI cutout preview -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#eef2f8] to-[#e4eaf2] transition-colors duration-300" id="ai-background"></div>
+<!-- Candidate Source Photo: Using user portrait image -->
+<div class="absolute inset-0 flex items-center justify-center transition-transform duration-75 ease-out cursor-grab active:cursor-grabbing origin-center" id="photo-wrapper" style="transform: scale(1.08) rotate(0deg) translate(0px, 12px);">
+<img alt="Candidat Campus France Portrait" class="h-full w-full object-cover object-center pointer-events-none filter transition-all duration-150" id="candidate-photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/>
+</div>
+<!-- BIOMETRIC OVERLAY HUD (ICAO 9303 Compliant Guide) -->
+<div class="absolute inset-0 pointer-events-none flex flex-col justify-between p-6 transition-opacity duration-200" id="biometric-hud">
+<!-- Top Measurement Gauge: Crown Max (36mm) -->
+<div class="relative w-full border-t border-dashed border-primary/80 flex items-center justify-between pt-1">
+<span class="bg-primary/90 text-on-primary font-caption-mono text-[10px] px-1.5 py-0.5 rounded shadow-xs tracking-wider uppercase font-semibold">
+                    ▲ Sommet Crâne Max (36mm)
+                  </span>
+<span class="font-caption-mono text-[10px] text-primary bg-surface-container-lowest/80 px-1 rounded font-bold">
+                    80% max
+                  </span>
+</div>
+<!-- Central Eye-Level Alignment Line -->
+<div class="relative w-full border-t border-secondary/90 flex items-center justify-between my-auto py-0.5">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="bg-secondary/90 text-on-secondary font-caption-mono text-[10px] px-1.5 py-0.5 rounded shadow-xs uppercase font-semibold">
+                      ◉ Axe Horizontal des Yeux
+                    </span>
+</div>
+<!-- Center crosshair tick -->
+<div class="absolute left-1/2 -top-2 transform -translate-x-1/2 flex flex-col items-center">
+<span class="w-0.5 h-4 bg-secondary"></span>
+</div>
+<span class="font-caption-mono text-[10px] text-secondary bg-surface-container-lowest/80 px-1 rounded font-bold">
+                    Centrage Strict
+                  </span>
+</div>
+<!-- Bottom Measurement Gauge: Chin Min (32mm) -->
+<div class="relative w-full border-b border-dashed border-primary/80 flex items-center justify-between pb-1">
+<span class="bg-primary/90 text-on-primary font-caption-mono text-[10px] px-1.5 py-0.5 rounded shadow-xs tracking-wider uppercase font-semibold">
+                    ▼ Bas du Menton Min (32mm)
+                  </span>
+<span class="font-caption-mono text-[10px] text-primary bg-surface-container-lowest/80 px-1 rounded font-bold">
+                    70% min
+                  </span>
+</div>
+<!-- Biometric Head Oval Mask Contour (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" viewbox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+<!-- Outer golden ratio guide -->
+<ellipse cx="200" cy="245" rx="105" ry="142" stroke="rgba(37, 99, 235, 0.45)" stroke-dasharray="4 3" stroke-width="1.5"></ellipse>
+<!-- Chin guide arc -->
+<path d="M 140 330 C 170 375, 230 375, 260 330" stroke="rgba(37, 99, 235, 0.6)" stroke-width="1.5"></path>
+<!-- Crown guide arc -->
+<path d="M 140 150 C 170 115, 230 115, 260 150" stroke="rgba(37, 99, 235, 0.6)" stroke-width="1.5"></path>
+<!-- Vertical symmetry centerline -->
+<line stroke="rgba(37, 99, 235, 0.25)" stroke-dasharray="2 4" stroke-width="1" x1="200" x2="200" y1="40" y2="460"></line>
+<!-- Corner millimeter registration markers -->
+<path d="M 20 40 L 20 20 L 40 20" stroke="rgba(0, 74, 198, 0.7)" stroke-width="2"></path>
+<path d="M 380 40 L 380 20 L 360 20" stroke="rgba(0, 74, 198, 0.7)" stroke-width="2"></path>
+<path d="M 20 460 L 20 480 L 40 480" stroke="rgba(0, 74, 198, 0.7)" stroke-width="2"></path>
+<path d="M 380 460 L 380 480 L 360 480" stroke="rgba(0, 74, 198, 0.7)" stroke-width="2"></path>
+</svg>
+<!-- Floating Live Calibration readout -->
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-caption-mono text-caption-mono text-on-surface font-bold">Tête: 34.2 mm (76.0%)</span>
+</div>
+</div>
+<!-- Flash state notification -->
+<div class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-surface-container-lowest/95 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-secondary/20 flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300" id="ai-toast">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Fond Campus France certifié appliqué !</span>
+</div>
+</div>
+<!-- Fine-Tuning Interactive Sliders -->
+<div class="mt-space-md pt-space-sm bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-caption-mono text-caption-mono text-on-surface font-semibold uppercase tracking-wider">Ajustements Manuels de Précision</span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Glissez ou ajustez les curseurs</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Zoom Slider -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">zoom_in</span>
+                      Zoom
+                    </span>
+<span class="font-label-numeric text-label-numeric font-bold text-on-surface" id="zoom-val">108%</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" id="slider-zoom" max="180" min="100" type="range" value="108"/>
+</div>
+<!-- Rotation Slider -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">rotate_right</span>
+                      Rotation Fine
+                    </span>
+<span class="font-label-numeric text-label-numeric font-bold text-on-surface" id="rotate-val">0.0°</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" id="slider-rotate" max="15" min="-15" step="0.5" type="range" value="0"/>
+</div>
+<!-- Brightness Slider -->
+<div>
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">light_mode</span>
+                      Exposition Visage
+                    </span>
+<span class="font-label-numeric text-label-numeric font-bold text-on-surface" id="bright-val">+4%</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" id="slider-bright" max="30" min="-30" type="range" value="4"/>
+</div>
+</div>
+</div>
+<!-- Powerful AI One-Click Action Button -->
+<button class="mt-space-md w-full py-3.5 px-space-md rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary flex items-center justify-center gap-space-sm font-body-md text-body-md font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.99] group" id="btn-ai-remove-bg">
+<span class="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">auto_fix_high</span>
+<span>Supprimer l'arrière-plan par IA &amp; Appliquer le fond réglementaire</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase tracking-wider ml-1">
+                Automatique
+              </span>
+</button>
+</div>
+<!-- Secondary Quick Help Tip -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px] flex-shrink-0 mt-0.5">verified_user</span>
+<div class="space-y-0.5">
+<h4 class="font-headline-md text-body-md text-on-surface font-semibold">Garantie d'acceptation consulaire</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Notre intelligence artificielle calibre automatiquement la texture de peau sans modifier la biométrie faciale originale, évitant formellement tout rejet consulaire ou Campus France.
+              </p>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Real-Time Compliance Inspector & Instant Export (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- COMPLIANCE AUDIT CARD -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md md:p-space-lg shadow-md flex flex-col">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container">
+<div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider">Audit Biométrique ICAO</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Vérification de Conformité</h3>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</div>
+</div>
+<!-- Dynamic Gauge / Progress Banner -->
+<div class="p-space-md rounded-xl bg-secondary-container/30 flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<!-- Circular SVG Progress Ring (98%) -->
+<div class="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
+<svg class="w-14 h-14 transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="98, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-label-numeric text-[13px] font-bold text-secondary">98%</span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-body-lg text-secondary font-bold">Conforme Campus France</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Prêt pour téléversement immédiat</span>
+</div>
+</div>
+<span class="font-label-badge text-label-badge px-2 py-1 rounded bg-secondary text-on-secondary font-bold uppercase">Validé</span>
+</div>
+<!-- Automated Checklist with Monospace detail tags -->
+<div class="space-y-space-xs font-body-sm text-body-sm">
+<!-- Criterion 1 -->
+<div class="flex items-start justify-between p-2 rounded-lg bg-surface-container-low/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="text-on-surface font-medium">Format 35 × 45 mm respecté</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant font-semibold">300 DPI UHD</span>
+</div>
+<!-- Criterion 2 -->
+<div class="flex items-start justify-between p-2 rounded-lg bg-surface-container-low/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="text-on-surface font-medium">Proportions tête / visage</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-bold">74% (33.3 mm)</span>
+</div>
+<!-- Criterion 3 -->
+<div class="flex items-start justify-between p-2 rounded-lg bg-surface-container-low/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="text-on-surface font-medium">Fond uni sans ombre parasite</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-semibold">Clair certifié</span>
+</div>
+<!-- Criterion 4 -->
+<div class="flex items-start justify-between p-2 rounded-lg bg-surface-container-low/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="text-on-surface font-medium">Yeux ouverts &amp; axe droit</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-semibold">0.0° inclinaison</span>
+</div>
+<!-- Criterion 5 -->
+<div class="flex items-start justify-between p-2 rounded-lg bg-surface-container-low/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="text-on-surface font-medium">Pas de reflets ni accessoires</span>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant font-semibold">Conforme</span>
+</div>
+</div>
+<!-- EXPORT PACK OPTIONS -->
+<div class="mt-space-md pt-space-md border-t border-surface-container">
+<span class="font-caption-mono text-caption-mono text-on-surface-variant uppercase tracking-wider block mb-space-xs">
+                Options d'Exportation 100% Gratuite
+              </span>
+<!-- Selectable Export Radio Cards -->
+<div class="space-y-space-xs" id="export-options-group">
+<!-- Option A: Single Digital File -->
+<label class="export-opt flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container cursor-pointer transition-all ring-1 ring-primary">
+<input checked="" class="mt-1 accent-primary" name="export_type" type="radio" value="single"/>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-bold">Fichier numérique individuel</span>
+<span class="font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container-lowest font-bold text-primary">Web / PDF</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      JPEG &amp; PNG 300 DPI haute définition calibré pour téléversement direct sur Études en France / France-Visas.
+                    </p>
+</div>
+</label>
+<!-- Option B: 4-Photo Printable Sheet -->
+<label class="export-opt flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all">
+<input class="mt-1 accent-primary" name="export_type" type="radio" value="sheet"/>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-bold">Planche d'impression (4 photos)</span>
+<span class="font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container-lowest font-bold text-on-surface-variant">10 × 15 cm</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      Prêt à imprimer instantanément chez tout photographe ou borne libre-service aux repères de découpe exacts.
+                    </p>
+</div>
+</label>
+</div>
+<!-- Main Primary CTA Button -->
+<button class="mt-space-md w-full py-4 px-space-md rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary flex items-center justify-center gap-space-sm font-headline-md text-body-lg font-bold shadow-lg hover:shadow-xl transition-all active:scale-[0.98]" id="btn-download-photo">
+<span class="material-symbols-outlined text-[24px]">download</span>
+<span>Télécharger gratuitement ma photo conforme</span>
+<span class="font-label-numeric text-label-numeric font-normal opacity-90">(0 FCFA / 0 €)</span>
+</button>
+<!-- Safe Storage Persistence Guarantee Note -->
+<div class="mt-space-sm flex items-center justify-center gap-1.5 text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary">cloud_done</span>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">
+                  Sauvegardé dans votre historique personnel non-supprimable.
+                </span>
+</div>
+</div>
+</div>
+<!-- Printable Preview Micro-Widget (Visual Polish) -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="grid grid-cols-2 gap-1 p-1 bg-surface-container rounded-lg w-12 h-14 flex-shrink-0">
+<div class="bg-surface-variant rounded-xs overflow-hidden">
+<img alt="Miniature" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/>
+</div>
+<div class="bg-surface-variant rounded-xs overflow-hidden">
+<img alt="Miniature" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/>
+</div>
+<div class="bg-surface-variant rounded-xs overflow-hidden">
+<img alt="Miniature" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/>
+</div>
+<div class="bg-surface-variant rounded-xs overflow-hidden">
+<img alt="Miniature" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD-tbcWtG8MLAQFpR163-BZ8pTOW7hPgzHNKhCsvBjbg9NBjsNjnk3f3ruYLPSDD4_MeI9vLCRkChjESONOTWuBt4dFv2SyKPw1yPGbaTrVceyVCbeZd3M1OYfjzyKgBU3Xq-lxTEYMJrzadaPA0kQTxlbITUx-S4OSngFWb6o8IIHSl-BTk1tRgkIZtLVCZQ4goFxzuN0rdmPk-3FFH-4CPuu91m23n7OMkL9ohOIHYdiRPEcJjiRA"/>
+</div>
+</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Repères de massicotage inclus</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lignes de coupe micrométriques certifiées</div>
+</div>
+</div>
+<span class="font-caption-mono text-caption-mono text-secondary font-bold bg-secondary-container px-2 py-1 rounded">300 DPI</span>
+</div>
+</div>
+</div>
+<!-- FAQ & Guidelines Accordion Strip for Consular Success -->
+<div class="mt-space-xl p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Exigences Internationales &amp; Recommandations</h3>
+</div>
+<span class="font-caption-mono text-caption-mono text-on-surface-variant">Norme OACI Doc 9303</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md font-body-sm text-body-sm">
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2 text-on-surface font-semibold mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">face</span>
+<span>Expression &amp; Regard</span>
+</div>
+<p class="text-on-surface-variant">
+              Expression strictement neutre, bouche fermée sans sourire exagéré. Le regard doit être fixé directement sur l'objectif avec les deux yeux bien dégagés.
+            </p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2 text-on-surface font-semibold mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">lightbulb</span>
+<span>Éclairage &amp; Contraste</span>
+</div>
+<p class="text-on-surface-variant">
+              Lumière diffuse sans ombres projetées sur le visage ou l'arrière-plan. Notre algorithme rééquilibre automatiquement le gamma et l'exposition faciale.
+            </p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2 text-on-surface font-semibold mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">eyeglasses</span>
+<span>Lunettes &amp; Couvre-chefs</span>
+</div>
+<p class="text-on-surface-variant">
+              Montures épaisses et verres teintés interdits. Aucun couvre-chef sauf motif religieux documenté (dans ce cas l'ovale complet du visage doit rester visible).
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Interactivity state
+    let zoomLevel = 1.08;
+    let rotationAngle = 0;
+    let brightnessVal = 4;
+    let gridVisible = true;
+    let aiBackgroundApplied = false;
+
+    // Elements
+    const photoWrapper = document.getElementById('photo-wrapper');
+    const photoImg = document.getElementById('candidate-photo');
+    const hud = document.getElementById('biometric-hud');
+    const aiBg = document.getElementById('ai-background');
+    const toast = document.getElementById('ai-toast');
+
+    const sliderZoom = document.getElementById('slider-zoom');
+    const sliderRotate = document.getElementById('slider-rotate');
+    const sliderBright = document.getElementById('slider-bright');
+
+    const zoomDisplay = document.getElementById('zoom-val');
+    const rotateDisplay = document.getElementById('rotate-val');
+    const brightDisplay = document.getElementById('bright-val');
+
+    const btnAiRemove = document.getElementById('btn-ai-remove-bg');
+    const btnToggleGrid = document.getElementById('toggle-grid-btn');
+    const btnResetView = document.getElementById('reset-view-btn');
+    const btnDownload = document.getElementById('btn-download-photo');
+
+    // Update photo transform
+    function updatePhotoTransform() {
+      photoWrapper.style.transform = `scale(${zoomLevel}) rotate(${rotationAngle}deg) translate(0px, 12px)`;
+      photoImg.style.filter = `brightness(${100 + brightnessVal}%) contrast(102%)`;
+    }
+
+    // Sliders event listeners
+    sliderZoom.addEventListener('input', (e) => {
+      zoomLevel = e.target.value / 100;
+      zoomDisplay.textContent = `${e.target.value}%`;
+      updatePhotoTransform();
+    });
+
+    sliderRotate.addEventListener('input', (e) => {
+      rotationAngle = parseFloat(e.target.value);
+      rotateDisplay.textContent = `${rotationAngle > 0 ? '+' : ''}${rotationAngle.toFixed(1)}°`;
+      updatePhotoTransform();
+    });
+
+    sliderBright.addEventListener('input', (e) => {
+      brightnessVal = parseInt(e.target.value, 10);
+      brightDisplay.textContent = `${brightnessVal > 0 ? '+' : ''}${brightnessVal}%`;
+      updatePhotoTransform();
+    });
+
+    // Toggle Biometric HUD Grid
+    btnToggleGrid.addEventListener('click', () => {
+      gridVisible = !gridVisible;
+      hud.style.opacity = gridVisible ? '1' : '0';
+      btnToggleGrid.classList.toggle('text-primary', gridVisible);
+      btnToggleGrid.classList.toggle('text-on-surface-variant', !gridVisible);
+    });
+
+    // Reset View
+    btnResetView.addEventListener('click', () => {
+      sliderZoom.value = 108;
+      sliderRotate.value = 0;
+      sliderBright.value = 4;
+      zoomLevel = 1.08;
+      rotationAngle = 0;
+      brightnessVal = 4;
+      zoomDisplay.textContent = '108%';
+      rotateDisplay.textContent = '0.0°';
+      brightDisplay.textContent = '+4%';
+      updatePhotoTransform();
+    });
+
+    // AI Background Removal Action
+    btnAiRemove.addEventListener('click', () => {
+      aiBackgroundApplied = !aiBackgroundApplied;
+      if (aiBackgroundApplied) {
+        aiBg.classList.remove('from-[#eef2f8]', 'to-[#e4eaf2]');
+        // Consular neutral soft studio blue-grey compliant tone
+        aiBg.style.backgroundColor = '#dbe5f1';
+        toast.style.opacity = '1';
+        toast.style.transform = 'translate(-50%, 8px)';
+        btnAiRemove.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">check</span>
+          <span>Fond Campus France Appliqué (Bleu Gris ISO)</span>
+          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase tracking-wider ml-1">Conforme</span>
+        `;
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translate(-50%, 0px)';
+        }, 3200);
+      } else {
+        aiBg.style.backgroundColor = '';
+        aiBg.classList.add('from-[#eef2f8]', 'to-[#e4eaf2]');
+        btnAiRemove.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">auto_fix_high</span>
+          <span>Supprimer l'arrière-plan par IA & Appliquer le fond réglementaire</span>
+          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-badge text-label-badge uppercase tracking-wider ml-1">Automatique</span>
+        `;
+      }
+    });
+
+    // Destination Presets Switching
+    const presetCards = document.querySelectorAll('.preset-card');
+    presetCards.forEach(card => {
+      card.addEventListener('click', () => {
+        presetCards.forEach(c => {
+          c.classList.remove('ring-2', 'ring-primary', 'bg-surface-container-lowest', 'shadow-md');
+          c.classList.add('bg-surface-container-low', 'shadow-sm');
+          const bar = c.querySelector('.h-1');
+          if (bar) bar.remove();
+          const badge = c.querySelector('.preset-badge-active');
+          if (badge) {
+            badge.className = 'font-caption-mono text-caption-mono px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant';
+            badge.textContent = badge.getAttribute('data-default-text') || 'Standard';
+          }
+        });
+
+        // Set Active
+        card.classList.remove('bg-surface-container-low', 'shadow-sm');
+        card.classList.add('ring-2', 'ring-primary', 'bg-surface-container-lowest', 'shadow-md');
+
+        const topBar = document.createElement('div');
+        topBar.className = 'absolute top-0 left-0 right-0 h-1 bg-primary rounded-t-xl';
+        card.appendChild(topBar);
+
+        // Flash confirmation feedback
+        toast.querySelector('span.text-on-surface').textContent = `Standard appliqué : ${card.querySelector('.font-bold').textContent}`;
+        toast.style.opacity = '1';
+        setTimeout(() => {
+          toast.style.opacity = '0';
+        }, 2200);
+      });
+    });
+
+    // Export format selection highlight
+    const exportOptions = document.querySelectorAll('.export-opt');
+    exportOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        exportOptions.forEach(o => {
+          o.classList.remove('ring-1', 'ring-primary', 'bg-surface-container');
+          o.classList.add('bg-surface-container-low');
+        });
+        opt.classList.remove('bg-surface-container-low');
+        opt.classList.add('ring-1', 'ring-primary', 'bg-surface-container');
+      });
+    });
+
+    // Instant Download button animation
+    btnDownload.addEventListener('click', () => {
+      const origText = btnDownload.innerHTML;
+      btnDownload.innerHTML = `
+        <span class="material-symbols-outlined text-[24px] animate-spin">progress_activity</span>
+        <span>Génération du fichier 300 DPI sécurisé...</span>
+      `;
+      btnDownload.disabled = true;
+
+      setTimeout(() => {
+        btnDownload.innerHTML = `
+          <span class="material-symbols-outlined text-[24px]">task_alt</span>
+          <span>Téléchargement Prêt (Archivé dans Mon Espace)</span>
+        `;
+        setTimeout(() => {
+          btnDownload.innerHTML = origText;
+          btnDownload.disabled = false;
+        }, 2500);
+      }, 1200);
+    });
+
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-space-xl"><div class="max-w-7xl mx-auto px-margin-tablet lg:px-margin-desktop py-space-xl"><div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-xl pb-space-lg border-b border-surface-container"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">verified</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Conforme ICAO 9303</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Standards Campus France, US, Schengen</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">lock</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Cryptage 256-bit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Chiffrement sécurisé de bout en bout</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0"><span class="material-symbols-outlined text-[20px]">high_quality</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">Zéro Perte Qualité</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Maintien dpi &amp; métadonnées biométriques</p></div></div><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[20px]">all_inclusive</span></div><div><h4 class="font-headline-md text-body-md text-on-surface font-semibold leading-tight">100% Gratuit</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Usage illimité sans filigrane imposé</p></div></div></div><div class="flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><span class="font-headline-lg text-headline-md text-primary font-bold">DocuVisa AI</span><span class="font-caption-mono text-caption-mono text-on-surface-variant">© 2025 Tous droits réservés. Traitement cloud sécurisé.</span></div><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Normes ICAO 9303</a><a class="hover:text-on-surface transition-colors" href="#">Politique de Confidentialité</a><a class="hover:text-on-surface transition-colors" href="#">Documentation API</a><a class="hover:text-on-surface transition-colors" href="#">Mentions Légales</a></div></div></div></footer></body></html>

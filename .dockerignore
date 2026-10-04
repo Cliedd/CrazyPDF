@@ -1,0 +1,9 @@
+.git
+.venv
+node_modules
+data
+.env*
+test-results
+playwright-report
+.idea
+**/__pycache__

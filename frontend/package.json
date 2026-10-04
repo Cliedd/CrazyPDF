@@ -1,0 +1,1 @@
+{"name":"@docuvisa/frontend","private":true,"version":"1.0.0","type":"module","scripts":{"build":"tsc && tailwindcss -i src/style.css -o public/styles.css --minify && vite build","dev":"vite --host 127.0.0.1"},"devDependencies":{"@tailwindcss/cli":"^4.3.3","tailwindcss":"^4.3.3","typescript":"^5.7.3","vite":"^8.3.2"}}

@@ -1,0 +1,20 @@
+{
+  "name": "docuvisa-ai",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "gateway"
+  ],
+  "scripts": {
+    "design:prepare": "python3 scripts/prepare_frontend.py",
+    "build": "npm run design:prepare && npm run build -w frontend && npm run build -w gateway",
+    "dev": "npm run dev -w gateway",
+    "start": "npm run start -w gateway",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "agent-browser": "^0.38.2"
+  }
+}

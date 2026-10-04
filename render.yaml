@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+services:
+  - type: web
+    name: CrazyPDF
+    runtime: docker
+    plan: free
+    region: ohio
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeployTrigger: off
+    numInstances: 1
+    maxShutdownDelaySeconds: 120
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: INTERNAL_API_TOKEN
+        generateValue: true
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: NODE_ENV
+        value: production
+      - key: WORKER_COUNT
+        value: "1"
+      - key: MAX_UPLOAD_MB
+        value: "100"
+      - key: STORAGE_DIR
+        value: /var/docuvisa/files
+      - key: PUBLIC_ORIGIN
+        value: https://crazypdf-g2bc.onrender.com
