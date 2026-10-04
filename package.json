@@ -11,7 +11,9 @@
     "build": "npm run design:prepare && npm run build -w frontend && npm run build -w gateway",
     "dev": "npm run dev -w gateway",
     "start": "npm run start -w gateway",
-    "test:browser": "playwright test"
+    "test:browser": "node scripts/test_browser.mjs",
+    "test:gateway": "node scripts/test_gateway.mjs",
+    "test:architecture": "node scripts/check_fsd.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

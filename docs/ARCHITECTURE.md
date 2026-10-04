@@ -6,7 +6,7 @@ flowchart LR
   Nest --> Python[FastAPI · accès privé / validation / comptes]
   Python --> DB[(Neon PostgreSQL : comptes, sessions, travaux, fichiers)]
   Python --> Queue[File SQL persistante · 1 travail simultané sur le forfait gratuit]
-  Queue --> Engines[LibreOffice / Pillow / Tesseract / rembg]
+  Queue --> Engines[LibreOffice / Pillow / Tesseract / ONNX U²-Net]
   Engines --> Disk[(Disque éphémère local : copie de travail)]
   Python --> DB
 ```
@@ -14,6 +14,10 @@ flowchart LR
 En développement, SQLite remplace Neon. Les cookies de session sont opaques, HttpOnly, SameSite=Lax et Secure en production. Seule l’empreinte de chaque session est stockée. Les mots de passe sont dérivés avec scrypt et sel aléatoire. Chaque accès à un travail ou à un fichier vérifie le propriétaire.
 
 NestJS sert l’interface compilée et transmet les flux multipart sans charger les fichiers dans sa mémoire. FastAPI valide le secret interne ajouté par Nest, les origines des requêtes avec état, le type de fichier, la taille, les images décompressées et les archives bureautiques. Le moteur de traitement utilise des noms internes aléatoires et ne construit aucune commande shell avec le nom du fichier utilisateur.
+
+La passerelle filtre les en-têtes HTTP hop-by-hop avant le proxy, notamment `Transfer-Encoding` et les champs nommés dans `Connection`. La validation des imports et leur archivage s’exécutent hors de la boucle HTTP. Les conversions bureautiques et l’inférence ONNX utilisent des sous-processus qui libèrent leurs allocations natives après chaque travail. Le détourage prépare les grandes images à 2048 pixels côté navigateur, conserve un master PNG transparent et réutilise ce masque pour les changements de fond.
+
+Le canvas et l’export Pillow utilisent la même transformation affine pour le zoom, la rotation et le déplacement. Les repères de tête restent un outil manuel ; l’application n’attribue pas de certification biométrique. Les démarches sans retouche désactivent le détourage et les corrections de luminosité.
 
 ## Feature-Sliced Design
 

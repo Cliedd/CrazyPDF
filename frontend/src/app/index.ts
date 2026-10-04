@@ -6,7 +6,7 @@ import { api } from '../shared/api';
 import { showAuth, switchAuth, logout } from '../features/auth';
 import { chooseMode } from '../features/document-conversion';
 import { importPhoto, exportPhoto, studioCutout } from '../features/photo-editor';
-import { importBackground, exportBackground, selectBackgroundFile, backgroundFiles, selectedFile } from '../features/background-removal';
+import { importBackground, exportBackground, selectBackgroundFile, selectedBackgroundPhoto, backgroundFiles, selectedFile } from '../features/background-removal';
 import { setupVault, preview } from '../features/document-vault';
 import { navigation } from '../widgets/header';
 import { renderHome } from '../pages/home';
@@ -34,7 +34,7 @@ document.addEventListener('click',async event=>{
     else if(action==='upload-photo'){if(await requireAuth())chooseFiles(false,f=>importPhoto(f[0]))}
     else if(action==='upload-background'){if(await requireAuth())chooseFiles(true,importBackground)}
     else if(action==='export-photo')exportPhoto();else if(action==='studio-cutout')studioCutout();else if(action==='export-background')exportBackground();
-    else if(action==='send-studio'){if(!backgroundFiles.length){toast('Importez d’abord une photo.');return}await importPhoto(backgroundFiles[selectedFile]);navigate('/studio')}
+    else if(action==='send-studio'){const photo=selectedBackgroundPhoto();if(!photo){toast('Importez d’abord une photo.');return}await importPhoto(photo,photo!==backgroundFiles[selectedFile]);navigate('/studio')}
     else if(action==='language')dialog('<h2>Langue de l’interface</h2><p>Cette version de DocuVisa.AI est disponible en français. Vos documents peuvent être traités en français et en anglais avec le moteur OCR.</p><button class="primary mt-4" data-action="close">Continuer en français</button>');
     return;
   }
@@ -48,7 +48,8 @@ window.addEventListener('popstate',render);
 window.addEventListener('route:changed',render);
 window.addEventListener('auth:required',showAuth);
 window.addEventListener('session:expired',()=>setUser(null));
+window.addEventListener('session:unavailable',()=>toast('Impossible de vérifier votre session. Réessayez dans quelques instants.'));
 window.addEventListener('account:changed',()=>{navigation();if(location.pathname==='/documents')setupVault()});
 modal.addEventListener('click',e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()}});
-async function init(){try{await loadPresets();await loadUser()}catch(e:any){toast(e.message)}render()}
+async function init(){const results=await Promise.allSettled([loadPresets(),loadUser()]);for(const result of results)if(result.status==='rejected')toast(result.reason?.message||'Le service est temporairement indisponible.');render()}
 init();

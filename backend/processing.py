@@ -4,28 +4,63 @@ import math
 import subprocess
 import tempfile
 import os
+import sys
+import threading
 from pathlib import Path
 import fitz
 from PIL import Image, ImageEnhance, ImageOps, ImageDraw
 from backend.presets import PRESETS, dimensions
 
-Image.MAX_IMAGE_PIXELS = 40_000_000
-_rembg_session = None
+Image.MAX_IMAGE_PIXELS = 16_000_000
+_segmentation_lock = threading.Lock()
 os.environ.setdefault('U2NET_HOME', str(Path('data/models').resolve()))
 os.environ.setdefault('TESSDATA_PREFIX', str(Path('data/tessdata').resolve()))
 os.environ.setdefault('OMP_NUM_THREADS', '1')
 
 def remove_background(image):
-    global _rembg_session
-    from rembg import new_session, remove
-    if _rembg_session is None:
-        _rembg_session = new_session('u2netp')
-    return remove(image.convert('RGBA'), session=_rembg_session)
+    # Serialize inference, release ONNX memory after every request, and keep
+    # image buffers bounded on Render's 512 MB instances.
+    if image.mode == 'RGBA' and image.getchannel('A').getextrema()[0] == 0:
+        return image.copy()
+    with _segmentation_lock:
+        image = image.copy()
+        image.thumbnail((3000, 3000), Image.Resampling.LANCZOS)
+        with tempfile.TemporaryDirectory() as td:
+            source, mask_path = Path(td) / 'input.png', Path(td) / 'mask.png'
+            inference = image.convert('RGB')
+            inference.thumbnail((1024, 1024), Image.Resampling.LANCZOS)
+            inference.save(source)
+            del inference
+            try:
+                result = subprocess.run([sys.executable, '-m', 'backend.segmentation_worker', str(source), str(mask_path)], capture_output=True, timeout=90)
+            except subprocess.TimeoutExpired:
+                raise ValueError('Le détourage a dépassé le délai. Réessayez avec un portrait plus simple.')
+            if result.returncode or not mask_path.exists():
+                import logging
+                logging.getLogger('docuvisa').error('Segmentation exit=%s stderr=%s', result.returncode, result.stderr.decode(errors='replace')[-1500:])
+                raise ValueError('Le portrait n’a pas pu être détouré. Utilisez une photo nette où le sujet se distingue du fond.')
+            with Image.open(mask_path) as small_mask:
+                mask = small_mask.resize(image.size, Image.Resampling.BILINEAR)
+            # Respect transparency already supplied by the user; keep soft hair
+            # edges rather than thresholding away fine details.
+            from PIL import ImageChops
+            image = image.convert('RGBA')
+            image.putalpha(ImageChops.multiply(mask, image.getchannel('A')))
+            return image
+
+def validate_image(path):
+    # Inspect the encoded file without keeping a decoded full-size portrait in the API.
+    with Image.open(path) as image:
+        if image.width * image.height > Image.MAX_IMAGE_PIXELS:
+            raise ValueError('Image trop grande : maximum 16 millions de pixels.')
+        if image.format not in ('JPEG', 'PNG', 'WEBP'):
+            raise ValueError('Importez une photo JPG, PNG ou WebP.')
+        image.verify()
 
 def load_image(path):
     image = Image.open(path)
     if image.width * image.height > Image.MAX_IMAGE_PIXELS:
-        raise ValueError('Image trop grande : maximum 40 millions de pixels.')
+        raise ValueError('Image trop grande : maximum 16 millions de pixels.')
     image = ImageOps.exif_transpose(image)
     if image.info.get('icc_profile'):
         from PIL import ImageCms
@@ -59,20 +94,25 @@ def photo(source, output, options):
         image = remove_background(image)
     width, height = dimensions(preset)
     background = options.get('background') or preset['background']
+    # Inverse canvas transform: same centered scale, clockwise rotation and
+    # normalized translation as the browser preview. One resampling prevents
+    # rotate(expand=True) rounding from moving the exported crop.
     scale = max(width / image.width, height / image.height) * float(options.get('zoom', 1))
-    image = image.resize((max(1, round(image.width * scale)), max(1, round(image.height * scale))), Image.Resampling.LANCZOS)
-    image = image.rotate(-float(options.get('rotation', 0)), Image.Resampling.BICUBIC, expand=True)
+    angle = math.radians(float(options.get('rotation', 0)))
+    cos, sin = math.cos(angle) / scale, math.sin(angle) / scale
+    center_x = width / 2 + float(options.get('offset_x', 0)) * width
+    center_y = height / 2 + float(options.get('offset_y', 0)) * height
+    image = image.transform((width, height), Image.Transform.AFFINE,
+        (cos, sin, image.width / 2 - cos * center_x - sin * center_y,
+         -sin, cos, image.height / 2 + sin * center_x - cos * center_y),
+        resample=Image.Resampling.BICUBIC)
+    if preset.get('no_retouch') and image.getchannel('A').getextrema()[0] < 255:
+        raise ValueError('Le cadrage crée des zones artificielles : recentrez la photo ou augmentez le zoom. Cette démarche exige une photo originale sans modification du fond.')
     if options.get('brightness'):
-        image = ImageEnhance.Brightness(image).enhance(1 + options['brightness'] / 100)
-    canvas = Image.new('RGBA', (width, height), background)
-    x = round((width - image.width) / 2 + float(options.get('offset_x', 0)) * width)
-    y = round((height - image.height) / 2 + float(options.get('offset_y', 0)) * height)
-    if preset.get('no_retouch'):
-        coverage = Image.new('L', (width, height), 0)
-        coverage.paste(image.getchannel('A'), (x, y))
-        if coverage.getextrema()[0] < 255:
-            raise ValueError('Le cadrage crée des zones artificielles : recentrez la photo ou augmentez le zoom. Cette démarche exige une photo originale sans modification du fond.')
-    canvas.paste(image, (x, y), image)
+        alpha = image.getchannel('A')
+        image = ImageEnhance.Brightness(image.convert('RGB')).enhance(1 + options['brightness'] / 100).convert('RGBA')
+        image.putalpha(alpha)
+    canvas = Image.alpha_composite(Image.new('RGBA', (width, height), background), image)
     if options.get('export_type') == 'sheet':
         # Real 10×15 cm PDF page, actual-size images and crop marks.
         count = int(options.get('sheet_count', 4))
@@ -113,13 +153,29 @@ def cutout(source, output, options):
         image.putalpha(alpha)
     if options.get('shadow'):
         image = ImageEnhance.Brightness(image).enhance(1.05)
-    background = options.get('background', 'transparent')
+    background = options.get('background') or 'transparent'
     if background != 'transparent':
         canvas = Image.new('RGBA', image.size, background)
         canvas.alpha_composite(image)
         image = canvas
     encode_image(image, output, 'PNG')
     return {'width_px': image.width, 'height_px': image.height, 'status': 'Fond traité — vérifier les contours', 'background': background}
+
+def convert_isolated(source, output, mode, options):
+    # pdf2docx/OpenCV and OCR retain sizeable native allocations. Keep them out
+    # of the API process so a later segmentation still fits a 512 MB instance.
+    with tempfile.TemporaryDirectory() as td:
+        metadata = Path(td) / 'result.json'
+        try:
+            result = subprocess.run([sys.executable, '-m', 'backend.conversion_worker', str(source.resolve()), str(output.resolve()), mode, str(metadata)], capture_output=True, timeout=420)
+        except subprocess.TimeoutExpired:
+            raise ValueError('La conversion a dépassé le délai. Divisez votre document en plusieurs fichiers.')
+        if result.returncode or not metadata.is_file():
+            raise ValueError('La conversion a été interrompue. Réessayez avec un document plus petit.')
+        payload = json.loads(metadata.read_text())
+        if 'error' in payload:
+            raise ValueError(payload['error'])
+        return payload['metadata']
 
 def office_to_pdf(source, output):
     with tempfile.TemporaryDirectory() as td:
@@ -179,12 +235,28 @@ def convert(source, output, mode, options):
             if len(document) > 200 or len(document) == 0:
                 raise ValueError('Le PDF doit contenir entre 1 et 200 pages.')
             first = document[0].rect
-            presentation.slide_width = Inches(first.width / 72)
-            presentation.slide_height = Inches(first.height / 72)
+            # PowerPoint supports sides from 1 to 56 inches. Keep the PDF's
+            # proportions where possible, including large-format drawings.
+            slide_scale = min(1, 56 * 72 / max(first.width, first.height))
+            if min(first.width, first.height) * slide_scale < 72:
+                raise ValueError('Les proportions de ce PDF ne sont pas compatibles avec une diapositive PowerPoint.')
+            presentation.slide_width = Inches(first.width * slide_scale / 72)
+            presentation.slide_height = Inches(first.height * slide_scale / 72)
+            image_bytes_total = 0
             for page in document:
                 slide = presentation.slides.add_slide(presentation.slide_layouts[6])
-                pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
-                slide.shapes.add_picture(io.BytesIO(pixmap.tobytes('png')), 0, 0, width=presentation.slide_width, height=presentation.slide_height)
+                # Bound raster memory for unusually large PDF pages. A4 keeps
+                # its usual 144 dpi rendering; larger pages stay under 4 MP.
+                render_scale = min(2, math.sqrt(4_000_000 / (page.rect.width * page.rect.height)))
+                pixmap = page.get_pixmap(matrix=fitz.Matrix(render_scale, render_scale), alpha=False)
+                image_bytes = pixmap.tobytes('png')
+                image_bytes_total += len(image_bytes)
+                if image_bytes_total > 64 * 1024 * 1024:
+                    raise ValueError('Ce PDF contient trop d’images pour une seule conversion. Divisez-le en plusieurs documents puis réessayez.')
+                placement_scale = min(presentation.slide_width / page.rect.width, presentation.slide_height / page.rect.height)
+                width = round(page.rect.width * placement_scale)
+                height = round(page.rect.height * placement_scale)
+                slide.shapes.add_picture(io.BytesIO(image_bytes), (presentation.slide_width - width) // 2, (presentation.slide_height - height) // 2, width=width, height=height)
             presentation.save(output)
             return {'pages': len(document), 'status': 'Converti en diapositives', 'note': 'Chaque page devient une image haute résolution dans une diapositive ; les textes ne sont pas modifiables.'}
     raise ValueError('Conversion inconnue.')

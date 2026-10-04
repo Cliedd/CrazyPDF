@@ -12,3 +12,17 @@ export async function busy(button:HTMLButtonElement|null,action:()=>Promise<void
   const input=document.createElement('input');input.type='file';input.accept='image/jpeg,image/png,image/webp';input.multiple=multiple;input.onchange=()=>{if(input.files?.length)callback(Array.from(input.files))};input.click();
 }
 export function loadPortrait(url:string):Promise<HTMLImageElement>{return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(new Error('Image illisible.'));image.src=url})}
+
+// Bound segmentation uploads before the server decodes them on its memory-limited worker.
+export async function boundedPortrait(file:File):Promise<File>{
+  const url=URL.createObjectURL(file);
+  try{
+    const image=await loadPortrait(url),longest=Math.max(image.naturalWidth,image.naturalHeight);
+    if(longest<=2048)return file;
+    const canvas=document.createElement('canvas'),scale=2048/longest;
+    canvas.width=Math.round(image.naturalWidth*scale);canvas.height=Math.round(image.naturalHeight*scale);
+    canvas.getContext('2d')!.drawImage(image,0,0,canvas.width,canvas.height);
+    const blob=await new Promise<Blob>((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Impossible de préparer cette photo.')),'image/png'));
+    return new File([blob],file.name.replace(/\.[^.]+$/,'')+'.png',{type:'image/png'});
+  }finally{URL.revokeObjectURL(url)}
+}

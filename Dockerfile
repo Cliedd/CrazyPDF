@@ -21,9 +21,9 @@ COPY --from=frontend /app/node_modules node_modules
 COPY --from=frontend /app/gateway/node_modules gateway/node_modules
 COPY --from=frontend /app/gateway/dist gateway/dist
 COPY --from=frontend /app/frontend/dist frontend/dist
-COPY backend backend
 COPY scripts/download_models.py scripts/download_models.py
 RUN python scripts/download_models.py
+COPY backend backend
 COPY scripts/start.sh scripts/start.sh
 RUN useradd --create-home --uid 10001 docuvisa && mkdir -p /var/docuvisa/files && chown -R docuvisa:docuvisa /app /var/docuvisa
 USER docuvisa

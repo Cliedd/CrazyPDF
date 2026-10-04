@@ -11,7 +11,9 @@ test_root = Path(tempfile.mkdtemp(prefix='docuvisa-tests-'))
 os.environ['DATABASE_URL'] = 'sqlite:///' + str(test_root / 'test.db')
 os.environ['STORAGE_DIR'] = str(test_root / 'files')
 os.environ['INTERNAL_API_TOKEN'] = 'test-internal-token'
-os.environ['WORKER_COUNT'] = '2'
+os.environ['WORKER_COUNT'] = '1'
+os.environ['COOKIE_SECURE'] = 'false'
+os.environ['RENDER'] = 'false'
 
 import pytest
 import fitz
@@ -19,7 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 from docx import Document
 from pptx import Presentation
 from fastapi.testclient import TestClient
-from backend.main import app, Session, Job
+from backend.main import app, Session, Job, LoginSession
 from backend.presets import PRESETS, dimensions
 
 @pytest.fixture(scope='module')
@@ -82,6 +84,36 @@ def test_auth_private_files_and_no_delete(client):
     restored = client.get(job['download_url'])
     assert restored.status_code == 200
     assert restored.content == content
+
+def test_session_status_survives_upload_and_invalid_login(client):
+    import hashlib
+    client.cookies.clear()
+    response = client.get('/api/auth/session')
+    assert response.status_code == 200
+    assert response.json() == {'user': None}
+    assert 'no-store' in response.headers['cache-control']
+    email = account(client)
+    token = client.cookies['docuvisa_session']
+    assert client.get('/api/auth/session').json()['user']['email'] == email
+    assert client.post('/api/auth/login', json={'email': email, 'password': 'wrong-password-123'}).status_code == 401
+    assert client.cookies['docuvisa_session'] == token
+    assert client.get('/api/auth/session').json()['user']['email'] == email
+    submit(client, 'session-photo.jpg', image_bytes(600, 800), 'photo', {'preset': 'campus-cm'})
+    # A new HTTP client represents a reload or moving between feature pages.
+    # Reloading a browser must not start/stop a second application lifespan.
+    reloaded = TestClient(app, headers={'X-Internal-Token': 'test-internal-token'}, cookies={'docuvisa_session': token})
+    try:
+        assert reloaded.get('/api/auth/session').json()['user']['email'] == email
+        assert reloaded.get('/api/jobs').status_code == 200
+    finally:
+        reloaded.close()
+    with Session() as session:
+        stored = session.get(LoginSession, hashlib.sha256(token.encode()).hexdigest())
+        stored.expires = time.time() - 1
+        session.commit()
+    assert client.get('/api/auth/session').json() == {'user': None}
+    assert client.get('/api/jobs').status_code == 401
+    assert client.post('/api/auth/login', json={'email': email, 'password': 'Testing-Password-2026'}).status_code == 200
 
 def test_official_preset_dimensions_and_limits(client):
     for preset_id, preset in PRESETS.items():
@@ -167,7 +199,7 @@ def test_scan_ocr_real_text(client):
     assert job['metadata']['ocr'] is True
 
 def test_real_cutout_and_archive_zip(client):
-    source = Path('design/stitch/a9678693ab304b88b1be7d76bb882c71/screen.png').read_bytes()
+    source = Path('frontend/public/assets/243d5220011d19a6.png').read_bytes()
     for background in ('transparent', '#FFFFFF', '#F1F5F9', '#E0F2FE'):
         _, content = submit(client, 'portrait.png', source, 'cutout', {'background': background, 'sharpness': True, 'exposure': True})
         image = Image.open(io.BytesIO(content))
@@ -190,3 +222,11 @@ def test_invalid_files_and_options(client):
         assert response.status_code == 422, response.text
     assert client.post('/api/auth/logout', headers={'Origin': 'https://untrusted.example'}).status_code == 403
     assert client.get('/api/jobs', headers={'X-Internal-Token': 'wrong'}).status_code == 403
+
+def test_auth_throttle_does_not_lock_other_proxy_users(client):
+    email = uuid.uuid4().hex + '@example.com'
+    for _ in range(20):
+        assert client.post('/api/auth/login', json={'email': email, 'password': 'Testing-Password-2026'}).status_code == 401
+    assert client.post('/api/auth/login', json={'email': email, 'password': 'Testing-Password-2026'}).status_code == 429
+    # Both requests have the same proxy peer, but unrelated users can register.
+    account(client, 'rate-limit-independent')

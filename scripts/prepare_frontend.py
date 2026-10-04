@@ -4,7 +4,7 @@ import json
 import re
 import urllib.request
 from pathlib import Path
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 root = Path('frontend')
 (root / 'pages').mkdir(parents=True, exist_ok=True)
@@ -13,6 +13,21 @@ assets.mkdir(parents=True, exist_ok=True)
 screens = {'home': '350ae99d04934978913d853cdec62830', 'studio': 'a977a7cbe61d4142a867146abca35926', 'documents': 'f3e34319b9d74d3ea0a33967c994d767', 'background': 'f381bd531bcc48c6b5c6c2a98a3c51f7'}
 paths = {'accueil-et-conversion': '/', 'studio-photo-visa': '/studio', 'detourage-ia': '/background', 'mes-documents-et-exports': '/documents', 'connexion-et-compte': '/account'}
 replacements = {
+    'Conçus sur mesure pour éliminer les rejets de visa consulaire, garantir les équivalences universitaires et réduire vos délais de préparation.': 'Convertissez vos pièces et préparez vos photos selon la démarche choisie. Vérifiez les consignes du portail avant le dépôt.',
+    "Ne laissez aucun doute à l'ambassade ou à Campus France. Notre algorithme détecte automatiquement les yeux, la ligne du menton, le sommet du crâne et la luminosité faciale pour garantir 100% d'éligibilité.": 'Choisissez votre démarche, puis ajustez votre photo avec les repères de cadrage. Les dimensions et le poids sont appliqués à l’export ; la pose, le visage et l’éclairage restent à vérifier.',
+    'Fidélité absolue des polices, tableaux et pagination.': 'Conversion des polices, tableaux et pagination. Vérifiez le résultat avant de transmettre votre dossier.',
+    'Sauvegarde permanente de tous vos dossiers': 'Retrouvez les exports dans votre compte',
+    "Connectez-vous pour archiver à vie vos diplômes, lettres de recommandation et photos d'identité dans un espace certifié. Ne perdez plus jamais un document validé.": 'Connectez-vous pour conserver vos diplômes, lettres de recommandation et photos dans votre espace personnel. Téléchargez aussi une copie de vos pièces importantes.',
+    'Serveurs basés en Union Européenne': 'Accès réservé à votre compte',
+    'Certification ICAO & ISO 19005': 'Consignes officielles consultables',
+    'Confidentialité RGPD': 'Espace personnel',
+    'Standard PDF/A': 'Document PDF',
+    'Reconnu par les consulats': 'Vérifiez le format demandé',
+    'PDF/A-1b': 'PDF',
+    'Conforme archivage': 'Export PDF',
+    'Styles conservés': 'Mise en page à vérifier',
+    'CALIBRATION ICAO 9303 EN COURS': 'APERÇU DES REPÈRES DE CADRAGE',
+    '— CONFORME': '— À VÉRIFIER',
     'Chaque millimètre vérifié par règle optique certifiée': 'Les bons formats pour votre démarche',
     'Chiffrement Bancaire 256-bit': 'Accès personnel sécurisé',
     'Toutes les transactions et transferts sont sécurisés avec le protocole TLS 1.3 et chiffrés au repos selon les normes RGPD européennes les plus strictes.': 'La connexion HTTPS protège les transferts. Chaque fichier est accessible uniquement depuis le compte qui l’a importé.',
@@ -57,6 +72,10 @@ for name, screen_id in screens.items():
         config_written = True
     for script in soup.select('script'):
         script.decompose()
+    # Top-level BeautifulSoup comments become raw text if str() is used on
+    # each fragment child. Strip design annotations from every shipped page.
+    for comment in soup.find_all(string=lambda value: isinstance(value, Comment)):
+        comment.extract()
     for element in soup.select('[onclick]'):
         del element['onclick']
     for image in soup.select('img[src]'):

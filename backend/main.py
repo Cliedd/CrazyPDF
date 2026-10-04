@@ -20,7 +20,8 @@ load_dotenv(Path(__file__).resolve().parents[1] / '.env', override=False)
 
 import httpx
 from fastapi import FastAPI, Request, Response, HTTPException, UploadFile, File, Form, Depends
-from fastapi.responses import FileResponse, StreamingResponse, RedirectResponse
+from fastapi.responses import FileResponse, StreamingResponse, RedirectResponse, JSONResponse
+from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import create_engine, String, Text, Integer, Float, ForeignKey, LargeBinary, select, event
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
@@ -32,9 +33,12 @@ log = logging.getLogger('docuvisa')
 STORAGE = Path(os.getenv('STORAGE_DIR', './data/files')).resolve()
 STORAGE.mkdir(parents=True, exist_ok=True)
 db_url = os.getenv('DATABASE_URL', 'sqlite:///./data/docuvisa.db')
+if os.getenv('RENDER') == 'true' and not db_url.startswith(('postgres://', 'postgresql://', 'postgresql+psycopg://')):
+    raise RuntimeError('DATABASE_URL PostgreSQL est requis sur Render pour conserver les comptes et les sessions.')
 if db_url.startswith(('postgres://', 'postgresql://')):
     db_url = db_url.replace('postgres://', 'postgresql+psycopg://', 1).replace('postgresql://', 'postgresql+psycopg://', 1)
 engine = create_engine(db_url, connect_args={'check_same_thread': False} if db_url.startswith('sqlite') else {}, pool_pre_ping=True)
+log.info('Database backend: %s', engine.dialect.name)
 Session = sessionmaker(engine, expire_on_commit=False)
 
 class Base(DeclarativeBase):
@@ -104,7 +108,7 @@ def restore_file(job, kind):
     finally:
         temporary.unlink(missing_ok=True)
 
-pool = ThreadPoolExecutor(max_workers=int(os.getenv('WORKER_COUNT', '2')))
+pool = ThreadPoolExecutor(max_workers=int(os.getenv('WORKER_COUNT', '1')))
 inflight = set()
 
 def work(job_id):
@@ -116,7 +120,7 @@ def work(job_id):
             job.status = 'processing'
             session.commit()
             source, output, mode, options = restore_file(job, 'source'), Path(job.output), job.mode, json.loads(job.options)
-        result = processing.photo(source, output, options) if mode == 'photo' else processing.cutout(source, output, options) if mode == 'cutout' else processing.convert(source, output, mode, options)
+        result = processing.photo(source, output, options) if mode == 'photo' else processing.cutout(source, output, options) if mode == 'cutout' else processing.convert_isolated(source, output, mode, options)
         with Session() as session:
             job = session.get(Job, job_id)
             job.metadata_json = json.dumps(result)
@@ -136,14 +140,21 @@ def work(job_id):
 
 async def scheduler():
     while True:
-        with Session() as session:
-            capacity = int(os.getenv('WORKER_COUNT', '2')) - len(inflight)
-            if capacity > 0:
-                for job in session.scalars(select(Job).where(Job.status == 'queued').order_by(Job.created).limit(capacity)):
-                    if job.id not in inflight:
-                        inflight.add(job.id)
-                        pool.submit(work, job.id)
-        await asyncio.sleep(.5)
+        try:
+            await run_in_threadpool(schedule_pending_jobs)
+        except Exception:
+            log.exception('Job scheduler will retry after a database error')
+            await asyncio.sleep(2)
+        await asyncio.sleep(1)
+
+def schedule_pending_jobs():
+    with Session() as session:
+        capacity = int(os.getenv('WORKER_COUNT', '1')) - len(inflight)
+        if capacity > 0:
+            for job in session.scalars(select(Job).where(Job.status == 'queued').order_by(Job.created).limit(capacity)):
+                if job.id not in inflight:
+                    inflight.add(job.id)
+                    pool.submit(work, job.id)
 
 @asynccontextmanager
 async def lifespan(app):
@@ -165,17 +176,19 @@ attempts = defaultdict(deque)
 async def guard(request: Request, call_next):
     expected = os.getenv('INTERNAL_API_TOKEN', 'local-development')
     if request.url.path != '/api/health' and not hmac.compare_digest(request.headers.get('x-internal-token', ''), expected):
-        return Response(content='Accès via la passerelle requis', status_code=403)
+        return JSONResponse({'detail': 'Accès via la passerelle requis'}, status_code=403)
     if request.method not in ('GET', 'HEAD', 'OPTIONS'):
         origin = request.headers.get('origin')
-        allowed = os.getenv('PUBLIC_ORIGIN', 'http://localhost:3000').rstrip('/')
-        if origin and origin != allowed:
-            return Response(content='Origine non autorisée', status_code=403)
+        allowed = {value.rstrip('/') for value in (os.getenv('PUBLIC_ORIGIN', 'http://localhost:3000'), os.getenv('RENDER_EXTERNAL_URL', '')) if value}
+        if origin and origin not in allowed:
+            return JSONResponse({'detail': 'Origine non autorisée'}, status_code=403)
     return await call_next(request)
 
-def limit_auth(request):
-    # Proxy peer identity is normalized by Nest/Render; do not trust X-Forwarded-For.
-    key = request.client.host if request.client else 'unknown'
+def limit_auth(request, email):
+    # Nest is the peer for every request; a shared proxy bucket would lock out
+    # every user after twenty attempts by unrelated accounts.
+    peer = request.client.host if request.client else 'unknown'
+    key = (peer, hashlib.sha256(email.strip().lower().encode()).hexdigest())
     now = time.monotonic()
     entries = attempts[key]
     while entries and entries[0] < now - 60:
@@ -194,6 +207,7 @@ def issue_session(user, response):
     with Session() as session:
         session.add(LoginSession(token_hash=hashlib.sha256(token.encode()).hexdigest(), user_id=user.id, expires=time.time() + 30 * 86400))
         session.commit()
+    response.headers['Cache-Control'] = 'no-store, private'
     response.set_cookie('docuvisa_session', token, httponly=True, secure=os.getenv('COOKIE_SECURE', 'false') == 'true', samesite='lax', max_age=30 * 86400, path='/')
 
 def current_user(request: Request):
@@ -235,7 +249,7 @@ def config():
 
 @app.post('/api/auth/register')
 def register(data: Credentials, request: Request, response: Response):
-    limit_auth(request)
+    limit_auth(request, data.email)
     if not data.name.strip():
         raise HTTPException(422, 'Indiquez votre nom.')
     with Session() as session:
@@ -249,7 +263,7 @@ def register(data: Credentials, request: Request, response: Response):
 
 @app.post('/api/auth/login')
 def login(data: Credentials, request: Request, response: Response):
-    limit_auth(request)
+    limit_auth(request, data.email)
     with Session() as session:
         user = session.scalar(select(User).where(User.email == data.email))
     salt = user.password.split(':')[0] if user and ':' in user.password else 'invalid-login-salt'
@@ -260,8 +274,20 @@ def login(data: Credentials, request: Request, response: Response):
     return user_json(user)
 
 @app.get('/api/auth/me')
-def me(user=Depends(current_user)):
+def me(response: Response, user=Depends(current_user)):
+    response.headers['Cache-Control'] = 'no-store, private'
     return user_json(user)
+
+@app.get('/api/auth/session')
+def session_status(request: Request, response: Response):
+    # Missing sessions are normal on the public homepage, not a failed login.
+    response.headers['Cache-Control'] = 'no-store, private'
+    try:
+        return {'user': user_json(current_user(request))}
+    except HTTPException as error:
+        if error.status_code != 401:
+            raise
+        return {'user': None}
 
 class Profile(BaseModel):
     name: str = Field(min_length=1, max_length=100)
@@ -374,6 +400,29 @@ class Options(BaseModel):
 def job_json(job):
     return {'id': job.id, 'filename': job.filename, 'mode': job.mode, 'status': job.status, 'error': job.error, 'size': job.size, 'created': job.created, 'metadata': json.loads(job.metadata_json), 'download_url': '/api/jobs/' + job.id + '/download' if job.status == 'completed' else None}
 
+def validate_uploaded_file(source, mode, ext):
+    if mode in ('photo', 'cutout'):
+        processing.validate_image(source)
+    elif ext == '.pdf':
+        with processing.fitz.open(source) as doc:
+            if doc.needs_pass or len(doc) > 200 or not len(doc):
+                raise ValueError('PDF protégé, vide ou de plus de 200 pages.')
+    elif ext in ('.docx', '.pptx'):
+        with zipfile.ZipFile(source) as archive:
+            if sum(e.file_size for e in archive.infolist()) > 500 * 1024 * 1024:
+                raise ValueError('Archive bureautique décompressée trop volumineuse.')
+            expected = 'word/document.xml' if ext == '.docx' else 'ppt/presentation.xml'
+            if expected not in archive.namelist():
+                raise ValueError('Document bureautique invalide.')
+
+def persist_uploaded_job(job):
+    with Session() as session:
+        session.add(job)
+        session.flush()
+        archive_file(session, job.id, 'source', job.source)
+        session.commit()
+        return job_json(job)
+
 @app.post('/api/jobs', status_code=202)
 async def create_job(file: UploadFile = File(...), mode: str = Form(...), options: str = Form('{}'), user=Depends(current_user)):
     extensions = {'word-pdf': ['.docx', '.doc'], 'pdf-word': ['.pdf'], 'pptx-pdf': ['.pptx', '.ppt'], 'pdf-pptx': ['.pdf'], 'photo': ['.jpg', '.jpeg', '.png', '.webp'], 'cutout': ['.jpg', '.jpeg', '.png', '.webp']}
@@ -408,19 +457,7 @@ async def create_job(file: UploadFile = File(...), mode: str = Form(...), option
                 target.write(chunk)
         if not total:
             raise HTTPException(422, 'Fichier vide.')
-        if mode in ('photo', 'cutout'):
-            processing.load_image(source)
-        elif ext == '.pdf':
-            with processing.fitz.open(source) as doc:
-                if doc.needs_pass or len(doc) > 200 or not len(doc):
-                    raise ValueError('PDF protégé, vide ou de plus de 200 pages.')
-        elif ext in ('.docx', '.pptx'):
-            with zipfile.ZipFile(source) as archive:
-                if sum(e.file_size for e in archive.infolist()) > 500 * 1024 * 1024:
-                    raise ValueError('Archive bureautique décompressée trop volumineuse.')
-                expected = 'word/document.xml' if ext == '.docx' else 'ppt/presentation.xml'
-                if expected not in archive.namelist():
-                    raise ValueError('Document bureautique invalide.')
+        await run_in_threadpool(validate_uploaded_file, source, mode, ext)
     except HTTPException:
         source.unlink(missing_ok=True)
         raise
@@ -430,13 +467,8 @@ async def create_job(file: UploadFile = File(...), mode: str = Form(...), option
     finally:
         await file.close()
     output_ext = '.pdf' if mode in ('word-pdf', 'pptx-pdf') or (mode == 'photo' and opts['export_type'] == 'sheet') else '.docx' if mode == 'pdf-word' else '.pptx' if mode == 'pdf-pptx' else '.png' if mode == 'cutout' or (opts['format'] == 'PNG' and not PRESETS[opts['preset']].get('max_kb')) else '.jpg'
-    with Session() as session:
-        job = Job(id=job_id, user_id=user.id, mode=mode, filename=filename, source=str(source), output=str(directory / ('export' + output_ext)), options=json.dumps(opts))
-        session.add(job)
-        session.flush()
-        archive_file(session, job.id, 'source', source)
-        session.commit()
-        return job_json(job)
+    job = Job(id=job_id, user_id=user.id, mode=mode, filename=filename, source=str(source), output=str(directory / ('export' + output_ext)), options=json.dumps(opts))
+    return await run_in_threadpool(persist_uploaded_job, job)
 
 @app.get('/api/jobs')
 def list_jobs(user=Depends(current_user)):
