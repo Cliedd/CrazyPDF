@@ -1,13 +1,15 @@
 /** Real browser regression. Requires a running deployment and leaves a verification account. */
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
 const origin = process.env.TEST_ORIGIN || 'http://127.0.0.1:10001';
 const portrait = new URL('../frontend/public/assets/243d5220011d19a6.png', import.meta.url).pathname;
 const email = `verification-browser-${Date.now()}-${Math.random().toString(16).slice(2, 8)}@example.com`;
 const password = `Verify-${crypto.randomUUID()}!`;
-const browser = await chromium.launch({headless:true, executablePath:process.env.CHROMIUM_PATH || '/snap/bin/chromium', args:['--no-sandbox','--disable-dev-shm-usage']});
+const downloadDirectory = new URL('../data/browser-downloads/', import.meta.url).pathname;
+await mkdir(downloadDirectory,{recursive:true});
+const browser = await chromium.launch({downloadsPath:downloadDirectory,headless:true, executablePath:process.env.CHROMIUM_PATH || '/snap/bin/chromium', args:['--no-sandbox','--disable-dev-shm-usage']});
 const context = await browser.newContext({acceptDownloads:true,viewport:{width:1440,height:1100}});
 const page = await context.newPage();
 const failures = [], checks = [];
