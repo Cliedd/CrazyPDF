@@ -3,27 +3,29 @@ import { requireAuth } from '../../entities/user';
 import { presets } from '../../entities/preset';
 import { submit, waitJob, fileUrl, type Job } from '../../entities/document';
 export let photoFile:File|null=null;let portrait:HTMLImageElement|null=null;
-let originalPortrait:HTMLImageElement|null=null,cutoutFile:File|null=null;let sourceEdited=false;
-let presetId='campus-cm',zoom=1,rotation=0,brightness=0,offsetX=0,offsetY=0,removed=false;let lastPhotoJob:Job|null=null;
+let originalPortrait:HTMLImageElement|null=null,cutoutFile:File|null=null;let sourceEdited=false;let importing=0;let exporting=false;let cuttingOut=false;
+let presetId='campus-cm',zoom=1,rotation=0,brightness=0,offsetX=0,offsetY=0,removed=false;let lastPhotoJob:Job|null=null;let pendingDraw=0;
+function queuePhotoDraw(){if(!pendingDraw)pendingDraw=requestAnimationFrame(()=>{pendingDraw=0;drawPhoto()})}
 export async function importPhoto(file:File,digitallyEdited=false){
   if(file.size>100*1024*1024){toast('Photo trop volumineuse.');return}
-  try{const url=URL.createObjectURL(file);portrait=await loadPortrait(url);URL.revokeObjectURL(url);originalPortrait=portrait;photoFile=file;sourceEdited=digitallyEdited;cutoutFile=null;removed=false;lastPhotoJob=null;zoom=1;rotation=0;brightness=0;offsetX=offsetY=0;if(location.pathname==='/studio'){setupSliderValues();applyPreset();drawPhoto();$('#photo-name')!.textContent=file.name}}catch(e:any){toast(e.message)}
+  const revision=++importing;
+  try{const preview=await boundedPortrait(file);const url=URL.createObjectURL(preview);let image:HTMLImageElement;try{image=await loadPortrait(url)}finally{URL.revokeObjectURL(url)}if(revision!==importing)return;portrait=image;originalPortrait=portrait;photoFile=file;sourceEdited=digitallyEdited;cutoutFile=null;removed=false;lastPhotoJob=null;zoom=1;rotation=0;brightness=0;offsetX=offsetY=0;if(location.pathname==='/studio'){setupSliderValues();applyPreset();drawPhoto();$('#photo-name')!.textContent=file.name}}catch(e:any){toast(e.message)}
 }
 export function setupStudio(){
   const select=$('#preset-select') as HTMLSelectElement;
   select.innerHTML=Object.entries(presets).map(([id,p])=>`<option value="${id}">${escape(p.label)}</option>`).join('');select.value=presetId;
   select.onchange=()=>{presetId=select.value;if(presets[presetId].no_retouch){portrait=originalPortrait||portrait;cutoutFile=null;removed=false;}zoom=1;offsetX=offsetY=0;setupSliderValues();applyPreset();drawPhoto()};
   $$('[data-preset]').forEach(card=>{card.tabIndex=0;card.setAttribute('role','button');card.onclick=()=>{presetId=({'france':'campus-cm','canada':'ca-temporary','germany':'de-visa','usa':'us-visa'} as Record<string,string>)[card.dataset.preset!]!;select.value=presetId;if(presets[presetId].no_retouch){portrait=originalPortrait||portrait;cutoutFile=null;removed=false;}zoom=1;offsetX=offsetY=0;setupSliderValues();applyPreset();drawPhoto()}});
-  $('#slider-zoom')!.oninput=e=>{zoom=Number((e.target as HTMLInputElement).value)/100;$('#zoom-val')!.textContent=Math.round(zoom*100)+'%';drawPhoto()};
-  $('#slider-rotate')!.oninput=e=>{rotation=Number((e.target as HTMLInputElement).value);$('#rotate-val')!.textContent=rotation.toFixed(1)+'°';drawPhoto()};
-  $('#slider-bright')!.oninput=e=>{brightness=Number((e.target as HTMLInputElement).value);$('#bright-val')!.textContent=brightness+'%';drawPhoto()};
+  $('#slider-zoom')!.oninput=e=>{zoom=Number((e.target as HTMLInputElement).value)/100;$('#zoom-val')!.textContent=Math.round(zoom*100)+'%';queuePhotoDraw()};
+  $('#slider-rotate')!.oninput=e=>{rotation=Number((e.target as HTMLInputElement).value);$('#rotate-val')!.textContent=rotation.toFixed(1)+'°';queuePhotoDraw()};
+  $('#slider-bright')!.oninput=e=>{brightness=Number((e.target as HTMLInputElement).value);$('#bright-val')!.textContent=brightness+'%';queuePhotoDraw()};
   $('#reset-view-btn')!.onclick=()=>{zoom=1;rotation=brightness=offsetX=offsetY=0;setupSliderValues();drawPhoto()};
   $('#toggle-grid-btn')!.onclick=()=>{const hud=$('#biometric-hud')!;hud.hidden=!hud.hidden;$('#toggle-grid-btn')!.setAttribute('aria-pressed',String(!hud.hidden))};
   const canvas=$('#photo-canvas') as HTMLCanvasElement;
   ($('#slider-zoom') as HTMLInputElement).max='300';
   let drag:{x:number;y:number;ox:number;oy:number}|null=null;
   canvas.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,ox:offsetX,oy:offsetY};canvas.setPointerCapture(e.pointerId)};
-  canvas.onpointermove=e=>{if(!drag)return;const rect=canvas.getBoundingClientRect();offsetX=Math.max(-1,Math.min(1,drag.ox+(e.clientX-drag.x)/rect.width));offsetY=Math.max(-1,Math.min(1,drag.oy+(e.clientY-drag.y)/rect.height));drawPhoto()};
+  canvas.onpointermove=e=>{if(!drag)return;const rect=canvas.getBoundingClientRect();offsetX=Math.max(-1,Math.min(1,drag.ox+(e.clientX-drag.x)/rect.width));offsetY=Math.max(-1,Math.min(1,drag.oy+(e.clientY-drag.y)/rect.height));queuePhotoDraw()};
   canvas.onpointerup=canvas.onpointercancel=()=>drag=null;
   $$('input[name="export_type"]').forEach(e=>e.onchange=()=>{$$('.export-opt').forEach(l=>l.classList.toggle('export-select',!!$('input:checked',l)))});
   setupSliderValues();applyPreset();
@@ -39,7 +41,8 @@ function applyPreset(){
   $$('[data-preset]').forEach(card=>{card.classList.toggle('ring-2',card.dataset.preset===p.country);card.classList.toggle('ring-primary',card.dataset.preset===p.country)});
   $('#preset-note')!.innerHTML=`${sourceEdited&&p.no_retouch?'Cette photo provient du détourage : importez un original pour cette démarche. ':''}${escape(p.note)} <a href="${p.source}" target="_blank" rel="noopener">Règles officielles</a>`;
   $('#live-photo-specs')!.textContent=`${p.width_px||Math.round(p.width_mm/25.4*p.dpi)} × ${p.height_px||Math.round(p.height_mm/25.4*p.dpi)} px · ${p.width_mm} × ${p.height_mm} mm · ${p.dpi} DPI${p.max_kb?' · ≤ '+p.max_kb+' Ko':''}`;
-  const slider=$('#slider-bright') as HTMLInputElement;slider.disabled=!!p.no_retouch;if(p.no_retouch){brightness=0;slider.value='0';$('#bright-val')!.textContent='0%'}
+  const slider=$('#slider-bright') as HTMLInputElement;slider.disabled=!!p.no_retouch;slider.title=p.no_retouch?'Cette démarche exige une photo sans retouche : exposition désactivée.':'Ajuster la luminosité de la photo';
+  let exposureNote=$('#exposure-note');if(!exposureNote){exposureNote=document.createElement('p');exposureNote.id='exposure-note';exposureNote.className='text-xs mt-2';slider.after(exposureNote)}exposureNote.textContent=p.no_retouch?'Exposition désactivée pour cette démarche : photo originale sans retouche requise.':'L’exposition modifie la luminosité de toute la photo.';if(p.no_retouch){brightness=0;slider.value='0';$('#bright-val')!.textContent='0%'}
   const counts=$('#sheet-count') as HTMLSelectElement;
   const cols=p.width_mm*2+12/72*25.4<=100?2:1;
   for(const option of Array.from(counts.options))option.disabled=p.height_mm*Math.ceil(Number(option.value)/cols)+12/72*25.4>150;
@@ -89,19 +92,21 @@ function constrainCrop(width:number,height:number){
 function drawPhoto(){
   const canvas=$('#photo-canvas') as HTMLCanvasElement;if(!canvas||!portrait)return;
   const p=presets[presetId];if(!p)return;
-  canvas.width=p.width_px||Math.round(p.width_mm/25.4*p.dpi);canvas.height=p.height_px||Math.round(p.height_mm/25.4*p.dpi);
+  const width=p.width_px||Math.round(p.width_mm/25.4*p.dpi),height=p.height_px||Math.round(p.height_mm/25.4*p.dpi);if(canvas.width!==width)canvas.width=width;if(canvas.height!==height)canvas.height=height;
   constrainCrop(canvas.width,canvas.height);
   const ctx=canvas.getContext('2d')!, scale=Math.max(canvas.width/portrait.naturalWidth,canvas.height/portrait.naturalHeight)*zoom;
-  ctx.fillStyle=p.background;ctx.fillRect(0,0,canvas.width,canvas.height);ctx.save();ctx.translate(canvas.width/2+offsetX*canvas.width,canvas.height/2+offsetY*canvas.height);ctx.rotate(rotation*Math.PI/180);ctx.filter=`brightness(${100+brightness}%)`;ctx.drawImage(portrait,-portrait.naturalWidth*scale/2,-portrait.naturalHeight*scale/2,portrait.naturalWidth*scale,portrait.naturalHeight*scale);ctx.restore();
+  ctx.fillStyle=p.background;ctx.fillRect(0,0,canvas.width,canvas.height);ctx.save();ctx.translate(canvas.width/2+offsetX*canvas.width,canvas.height/2+offsetY*canvas.height);ctx.rotate(rotation*Math.PI/180);ctx.filter=brightness?`brightness(${100+brightness}%)`:'none';ctx.drawImage(portrait,-portrait.naturalWidth*scale/2,-portrait.naturalHeight*scale/2,portrait.naturalWidth*scale,portrait.naturalHeight*scale);ctx.restore();
 }
 export async function exportPhoto(){
+  if(exporting){toast('Votre export est déjà en cours.');return}
   if(!await requireAuth())return;if(!photoFile){toast('Importez votre photo avant de l’exporter.');return}if(sourceEdited&&presets[presetId].no_retouch){toast('Cette démarche exige une photo originale sans retouche. Importez le portrait original dans le studio.');return}
-  await busy($('#btn-download-photo') as HTMLButtonElement,async()=>{
+  exporting=true;try{await busy($('#btn-download-photo') as HTMLButtonElement,async()=>{
     const job=await waitJob(await submit(cutoutFile||photoFile!,'photo',{preset:presetId,zoom,rotation,brightness,offset_x:offsetX,offset_y:offsetY,remove_bg:false,format:($('#photo-format') as HTMLSelectElement).value,export_type:($('input[name="export_type"]:checked') as HTMLInputElement).value,sheet_count:Number(($('#sheet-count') as HTMLSelectElement).value)}));lastPhotoJob=job;download(job.download_url!);toast('Photo exportée et archivée gratuitement.');
-  });
+  });}finally{exporting=false}
 }
 export async function studioCutout(){
+  if(cuttingOut){toast('Le détourage est déjà en cours.');return}
   if(!await requireAuth())return;if(!photoFile){toast('Importez votre photo.');return}if(presets[presetId].no_retouch){toast('Cette démarche interdit la retouche du fond.');return}
   const source=photoFile;
-  await busy($('#btn-ai-remove-bg') as HTMLButtonElement,async()=>{const job=await waitJob(await submit(await boundedPortrait(source),'cutout',{background:'transparent'}));const url=await fileUrl(job);try{const next=await loadPortrait(url);const blob=await fetch(url).then(r=>r.blob());if(photoFile!==source||presets[presetId].no_retouch)return;portrait=next;cutoutFile=new File([blob],source.name.replace(/\.[^.]+$/,'')+'-detourage.png',{type:'image/png'});removed=true;drawPhoto();}finally{URL.revokeObjectURL(url)}toast('Fond supprimé. Vérifiez les contours avant export.');});
+  cuttingOut=true;try{await busy($('#btn-ai-remove-bg') as HTMLButtonElement,async()=>{const job=await waitJob(await submit(await boundedPortrait(source),'cutout',{background:'transparent'}));const url=await fileUrl(job);try{const next=await loadPortrait(url);const blob=await fetch(url).then(r=>r.blob());if(photoFile!==source||presets[presetId].no_retouch)return;portrait=next;cutoutFile=new File([blob],source.name.replace(/\.[^.]+$/,'')+'-detourage.png',{type:'image/png'});removed=true;drawPhoto();}finally{URL.revokeObjectURL(url)}toast('Fond supprimé. Vérifiez les contours avant export.');});}finally{cuttingOut=false;if(location.pathname==='/studio')applyPreset()}
 }
